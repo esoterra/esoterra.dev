@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Confidential Consensus | Kyle B</title>
+
+<meta name="description" content="Kyle Brown&apos;s personal website and published articles">
+<meta name="robots" content="index,follow">
+<meta name="author" content="Kyle Brown">
+
+<link rel="canonical" href="https://kyleb.cc/articles/confidential-consensus/">
+
+<meta property="og:title" content="Confidential Consensus | Kyle B">
+<meta property="og:type" content="article">
+
+<meta property="og:url" content="https://kyleb.cc/articles/confidential-consensus/">
+<meta property="og:description" content="Kyle Brown&apos;s personal website and published articles">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@kyleb_cc">
+<meta name="twitter:url" content="https://kyleb.cc/articles/confidential-consensus/">
+<meta name="twitter:title" content="Confidential Consensus | Kyle B">
+<meta name="twitter:description" content="Kyle Brown&apos;s personal website and published articles">
+
+
+
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/articles">Articles</a>
+      </nav>
+    </header>
+
+    <main>
+      <article>
+    <h1 class="title">Confidential Consensus</h1>
+    <h2 class="subtitle"></h2>
+    
+<p>
+    Currently, the <a href="https://confidentialcomputing.io/">Confidential Computing</a> community is focused on use cases with very high security requirements,
+    like the government and military, where applications must be protected from the Cloud Service Provider or the host machine in general.
+    These scenarios involve a traditional client/server environment where the server just needs to be a bit more secure.
+</p>
+
+<figure>
+    <img
+        class="downscale-50"
+        src="/cc/figure-0.webp"
+        alt="Diagram showing a cloud service provider host containing a security critical service guest"
+    />
+</figure>
+
+<p>
+    Confidential Computing can be used for much more than that though.
+    As currently envisioned, <a href="https://en.wikipedia.org/wiki/Trusted_execution_environment">Trusted Execution Environments</a> (TEEs)
+    provided by Confidential Computing systems offer an exciting trade off built on specialized hardware encryption features.
+    If you trust the hardware provider, you can run code on data that even the host cannot see or interfere with.
+</p>
+
+<figure>
+    <img
+        src="/cc/figure-1.webp"
+        alt="Diagram showing how a guest in a TEE can be attacked while one not in one can be."
+    />
+    <figcaption>If you trust the TEE features, you don&rsquo;t have to trust the host</figcaption>
+</figure>
+
+<p>
+    This has the potential to enable a new class of federated systems where
+    the host of a given instance has well-defined limits to the data they can view and the actions they can perform.
+    If the clients can verify that the instance is running in a TEE and is running open source code they have audited,
+    they can know what the host can and can&rsquo;t do with their data.
+    This could be especially valuable in social media & messaging applications where users want to know that their privacy is being protected.
+</p>
+
+<figure>
+    <img
+        class="downscale-50"
+        src="/cc/figure-2.webp"
+        alt="Diagram showing two users talking to a service instance within a TEE as a way to talk to each other."
+    />
+    <figcaption>Users can interact through a federated instance without trusting the operator</figcaption>
+</figure>
+
+<p>
+    In a fully distributed system, we can achieve <q>Confidential Consensus</q>
+    where each node runs in a TEE and acts as a replicated state machine processing encrypted events so that some of the system&rsquo;s state remains private.
+    Such systems will need a way to securely bootstrap so that the initial node(s) are known to be in TEEs
+    and a way to ensure that any new nodes added to the system are also TEEs.
+    This approach could offer a more dynamic and redundant version of a federated system where groups of users form networks
+    representing a given <q>instance</q> or the ability to create a more globally distributed system.
+</p>
+
+<figure>
+    <img
+        class="downscale-75"
+        src="/cc/figure-3.webp"
+        alt="Diagram showing three TEEs each running a node and users talking to various nodes."
+    />
+</figure>
+
+<p>
+    To pull this off, Confidential Computing systems will need to be flexible enough that they can run on diverse hardware.
+    To this end frameworks like <a href="https://enarx.dev/">Enarx</a> that abstract individual hardware security features
+    and enable cross-platform usage will be crucial.
+</p>
+</article>
+    </main>
+  </body>
+</html>
