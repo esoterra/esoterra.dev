@@ -1,0 +1,17 @@
+{
+  "name": "kylebcc",
+  "version": "0.1.0",
+  "description": "My personal website",
+  "main": "index.js",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "author": "Kyle Brown",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.2",
+    "eleventy-plugin-seo": "^0.5.2"
+  }
+}
