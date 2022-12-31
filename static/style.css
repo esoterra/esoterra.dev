@@ -114,6 +114,10 @@ code {
     box-shadow: inset 0 0 4px #DADADA;
 }
 
+strong {
+    font-weight: 700;
+}
+
 em {
     font-style: italic;
 }
