@@ -1,1 +1,4 @@
+http://kyleb.cc/* http://kyleb.dev/:splat 301!
+https://kyleb.cc/* https://kyleb.dev/:splat 301!
+
 * /404.html 404

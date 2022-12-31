@@ -6,9 +6,9 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPlugin(pluginSEO, {
         title: "Kyle B",
         description: "Kyle Brown's personal website",
-        url: "https://kyleb.cc",
+        url: "https://kyleb.dev",
         author: "Kyle Brown",
-        twitter: "kyleb_cc",
+        twitter: "kyleb_dev",
         options: {
             titleDivider: "|",
             showPageNumbers: false
