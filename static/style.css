@@ -29,14 +29,6 @@ body {
 ol, ul {
 	list-style: none;
 }
-/* blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-} */
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -47,6 +39,12 @@ header {
     position: sticky;
     top: 0;
     z-index: 800;
+}
+
+@media (max-width: 1200px) {
+    header {
+        background-color: white;
+    }
 }
 
 nav {
