@@ -157,6 +157,10 @@ html {
     text-rendering: optimizeLegibility;
 }
 
+p {
+    font-family: "ubuntu-light";
+}
+
 h1 {
     font-weight: 700;
     font-size: 150%;
