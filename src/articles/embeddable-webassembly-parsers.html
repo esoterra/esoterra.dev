@@ -39,10 +39,9 @@ date: 2022-03-07
 </p>
 
 <figure>
-    <img
-        src="/ewp/figure-0.webp"
-        alt="parse: function(input: string) -> string"
-    />
+{% highlight "js" %}
+parse: function(input: string) -> string
+{% endhighlight %}
     <figcaption>A WIT interface for a parser that inputs and outputs strings</figcaption>
 </figure>
 
@@ -69,10 +68,17 @@ date: 2022-03-07
 </p>
 
 <figure>
-    <img
-        src="/ewp/figure-1.webp"
-        alt="Two types are defined: span which has an integer offset and length, and token which has a string label and a span"
-    />
+{% highlight "js" %}
+record token {
+    label: string,
+    span: span
+}
+
+record span {
+    offset: u32, // The byte index where the token starts
+    length: u32, // The number of bytes long the token is
+}
+{% endhighlight %}
     <figcaption>A WIT interface for tokens (label + span) and spans (offset + length)</figcaption>
 </figure>
 
@@ -91,10 +97,23 @@ date: 2022-03-07
 </p>
 
 <figure>
-    <img
-        src="/ewp/figure-2.webp"
-        alt="Three types are defined: a branch which contains a label and list of indices, the index type which is a variant and may refer to token or branches by index, and the output which is a list of branches and a list of tokens"
-    />
+{% highlight "js" %}
+record branch {
+    label: string,
+    // The nodes that this branch contains
+    children: list<node-index>
+}
+
+variant node-index {
+    token(u32),  // refers to the Nth token in output
+    branch(u32), // refers to the Nth branch in output
+}
+
+record output {
+    tokens: list<token>,
+    tree: list<branch>
+}
+{% endhighlight %}
     <figcaption>A WIT interface for branches which reference children by index</figcaption>
 </figure>
 
@@ -106,10 +125,9 @@ date: 2022-03-07
 </p>
 
 <figure>
-    <img
-        src="/ewp/figure-3.webp"
-        alt="Defines a parse function which takes in an input string and outputs the output type defined in the prior figure"
-    />
+{% highlight "js" %}
+parse: function(input: string) -> output
+{% endhighlight %}
     <figcaption>A WIT interface for a parser that returns a structured output</figcaption>
 </figure>
 
@@ -133,10 +151,27 @@ date: 2022-03-07
 </p>
 
 <figure>
-    <img
-        src="/ewp/figure-4.webp"
-        alt="Code demonstrating the basic use of wit-bindgen"
-    />
+{% highlight "rust" %}
+wit_bindgen_rust::export!("../parser1.wit");
+
+struct Parser1 {}
+
+impl parser1::Parser1 for Parser1 {
+    fn parse(input: String) -> parser1::Output {
+        let tokens = tokenize(&input);
+        let tree = parse(&tokens);
+        parser1::Output { tokens, tree }
+    }
+}
+
+pub fn tokenize(input: &str) -> Vec<Token> {
+    ...
+}
+
+pub fn parse(input: &[Token]) -> Vec<Branch> {
+    ...
+}
+{% endhighlight %}
     <figcaption>Rust code showing how wit-bindgen can be used for the parser interface</figcaption>
 </figure>
 
@@ -166,10 +201,18 @@ date: 2022-03-07
 </p>
 
 <figure>
-    <img
-        src="/ewp/figure-5.webp"
-        alt="Executing the test program to print out the s-expression of a simple input"
-    />
+{% highlight "shell" %}
+$ cargo run -- ../ewp_json.wasm ../test.json
+(Object
+    (LBrace)
+    (Entry
+        (String)
+        (Colon)
+        (Number)
+    )
+    (RBrace)
+)
+{% endhighlight %}
     <figcaption>The tree-ewp tool being run to output a parenthesized parse tree</figcaption>
 </figure>
 
@@ -187,11 +230,17 @@ date: 2022-03-07
 </p>
 
 <figure>
-    <img
-        class="downscale" 
-        src="/ewp/figure-6.webp"
-        alt="A Cargo.toml file showing a dependency on wasmtime and wit-bindgen"
-    />
+{% highlight "toml" %}
+[package]
+name = "tree-ewp"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wasmtime = "0.33.0"
+wit-bindgen-wasmtime = { ... }
+...
+{% endhighlight %}
     <figcaption>The Cargo.toml file for the tree-ewp command line tool</figcaption>
 </figure>
 
@@ -200,7 +249,32 @@ date: 2022-03-07
 </p>
 
 <figure>
-    <img class="downscale" src="/ewp/figure-7.webp"/>
+{% highlight "rust" %}
+// Set up WASMTIME
+let engine = Engine::default();
+let mut linker = Linker::new(&engine);
+let mut store = Store::new(&engine, interface::Parser1Data {});
+
+// Load and initialize our EWP module
+let wat = fs::read(args.ewp_path)
+    .expect("Could not read EWP WASM module file");
+let module = Module::new(&engine, wat)
+    .expect("Could not initialize module");
+let result = interface::Parser1::instantiate(
+            &mut store, &module,
+            &mut linker, get_whole_store
+    )
+    .expect("Failed to instantiate interface");
+
+
+// Read input file and parse it
+let input = fs::read_to_string(args.input_path)
+    .expect("Could not read pares input file");
+let output = result.1.parse(&mut store, &input)
+    .expect("Failed to run EWP");
+
+printer::pretty_print(output);
+{% endhighlight %}
     <figcaption>The high level implementation of the tree-ewp tool using wasmtime</figcaption>
 </figure>
 

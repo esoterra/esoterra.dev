@@ -183,17 +183,22 @@ h3 {
 }
 
 a, a:visited {
+    font-family: "ubuntu";
     color: #BA5624;
     text-decoration: none;
 }
 
-code {
+/* code {
     white-space: nowrap;
     color: black;
     background-color: #EEEEEE;
     padding: 4px;
     border-radius: 0.3em;
     box-shadow: inset 0 0 4px #DADADA;
+} */
+
+code {
+    font-family: "ubuntu-mono" !important;
 }
 
 strong {
@@ -218,6 +223,10 @@ figure {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+figure > pre {
+    width: 100%;
 }
 
 figure > img {
