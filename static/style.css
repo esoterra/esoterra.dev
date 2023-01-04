@@ -1,3 +1,78 @@
+/* Ubuntu */
+@font-face {
+    font-family: "ubuntu";
+    src: url("fonts/ubuntu/ubuntu-regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "ubuntu";
+    src: url("fonts/ubuntu/ubuntu-bold.woff") format("woff");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "ubuntu";
+    src: url("fonts/ubuntu/ubuntu-bold-italic.woff") format("woff");
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "ubuntu";
+    src: url("fonts/ubuntu/ubuntu-italic.woff") format("woff");
+    font-style: italic;
+}
+
+/* Ubuntu Light */
+@font-face {
+    font-family: "ubuntu-light";
+    src: url("fonts/ubuntu/ubuntulight-regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "ubuntu-light";
+    src: url("fonts/ubuntu/ubuntulight-bold.woff") format("woff");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "ubuntu-light";
+    src: url("fonts/ubuntu/ubuntulight-bold-italic.woff") format("woff");
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "ubuntu-light";
+    src: url("fonts/ubuntu/ubuntulight-italic.woff") format("woff");
+    font-style: italic;
+}
+
+/* Ubuntu Mono */
+@font-face {
+    font-family: "ubuntu-mono";
+    src: url("fonts/ubuntu/ubuntumono-regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "ubuntu-mono";
+    src: url("fonts/ubuntu/ubuntumono-bold.woff") format("woff");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "ubuntu-mono";
+    src: url("fonts/ubuntu/ubuntumono-bold-italic.woff") format("woff");
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "ubuntu-mono";
+    src: url("fonts/ubuntu/ubuntumono-italic.woff") format("woff");
+    font-style: italic;
+}
+
 /* Baseline */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -75,10 +150,15 @@ main {
 
 /* Text Formatting */
 html {
-    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    /* font-family: Helvetica Neue,Helvetica,Arial,sans-serif; */
+    font-family: "ubuntu";
     font-size: 1.2em;
     color: #381D2A;
     text-rendering: optimizeLegibility;
+}
+
+p {
+    font-family: "ubuntu-light";
 }
 
 h1 {
