@@ -2,12 +2,14 @@
 @font-face {
     font-family: "ubuntu";
     src: url("fonts/ubuntu/ubuntu-regular.woff") format("woff");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "ubuntu";
     src: url("fonts/ubuntu/ubuntu-bold.woff") format("woff");
     font-weight: bold;
+    font-display: swap;
 }
 
 @font-face {
@@ -15,24 +17,28 @@
     src: url("fonts/ubuntu/ubuntu-bold-italic.woff") format("woff");
     font-weight: bold;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "ubuntu";
     src: url("fonts/ubuntu/ubuntu-italic.woff") format("woff");
     font-style: italic;
+    font-display: swap;
 }
 
 /* Ubuntu Light */
 @font-face {
     font-family: "ubuntu-light";
     src: url("fonts/ubuntu/ubuntulight-regular.woff") format("woff");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "ubuntu-light";
     src: url("fonts/ubuntu/ubuntulight-bold.woff") format("woff");
     font-weight: bold;
+    font-display: swap;
 }
 
 @font-face {
@@ -40,24 +46,28 @@
     src: url("fonts/ubuntu/ubuntulight-bold-italic.woff") format("woff");
     font-weight: bold;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "ubuntu-light";
     src: url("fonts/ubuntu/ubuntulight-italic.woff") format("woff");
     font-style: italic;
+    font-display: swap;
 }
 
 /* Ubuntu Mono */
 @font-face {
     font-family: "ubuntu-mono";
     src: url("fonts/ubuntu/ubuntumono-regular.woff") format("woff");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "ubuntu-mono";
     src: url("fonts/ubuntu/ubuntumono-bold.woff") format("woff");
     font-weight: bold;
+    font-display: swap;
 }
 
 @font-face {
@@ -65,12 +75,14 @@
     src: url("fonts/ubuntu/ubuntumono-bold-italic.woff") format("woff");
     font-weight: bold;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "ubuntu-mono";
     src: url("fonts/ubuntu/ubuntumono-italic.woff") format("woff");
     font-style: italic;
+    font-display: swap;
 }
 
 /* Baseline */
