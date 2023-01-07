@@ -1,0 +1,162 @@
+---
+title: Template Compiler - Part 1
+description: Compiling HTML (or other) templates to Wasm Components
+eleventyExcludeFromCollections: true
+author: Kyle Brown
+date: 2023-01-08
+---
+
+<p>
+    WebAssembly (Wasm) components are a compact, portable, secure, and fast units of code.
+    They&apos;re a <q>compile target</q> with a binary format, not a source code language.
+    So you won't write them by hand, you&apos;ll have tools to generate them for you.
+</p>
+
+<p>
+    In addition to things like Rust, C++, JavaScript, and Python,
+    we can compile new languages and new takes on old languages to Wasm components.
+    For example, we can compile HTML templates (or templates generally) to Wasm components
+    that export a function like <code>render: (params) -> string</code>
+    or in the future <code>render: (params) -> stream&lt;u8&gt;</code>.
+</p>
+
+<h2>Making a Template-to-Component Compiler</h2>
+
+<p>
+    So, let's make a compiler that converts templates into components!
+</p>
+
+<p>
+    To keep this manageable, I'm going to split up this project into several parts.
+    I'll implement each part, and then write an article here on my website that explains it.
+</p>
+
+<h2>Chapter 1 Goal</h2>
+
+<p>
+    The goal for this chapter is to make a compiler that generates components whose type looks like this.
+</p>
+
+{% highlight "js" %}
+export apply: func() -> string
+{% endhighlight %}
+
+<p>
+    They'll contain all of the data and logic needed to create and return that string.
+    Those components can be instantiated by runtimes
+    like <a href="https://github.com/bytecodealliance/wasmtime">wasmtime</a>
+    and executed to produce the desired string.
+</p>
+
+<p>
+    Since runtimes like wasmtime compile to a variety of platforms including all the big ones
+    and have bindings for common programming languages, this <q>template</q> can be used essentially everywhere.
+</p>
+
+<h2>Basic Setup</h2>
+
+<p>
+    The basic compiler command line interface needs to accept an input path, output path,
+    and optionally a name chosen by the user for the template function.
+    I've chosen to use the <a href="https://crates.io/crates/clap">clap</a> command line argument parsing library,
+    because it is very simple and powerful.
+</p>
+
+{% highlight "rust" %}
+#[derive(Parser)]
+#[command(about)]
+struct Args {
+    #[arg(short, long)]
+    input: PathBuf,
+    #[arg(short, long)]
+    output: PathBuf,
+
+    // The export name for the template function
+    #[arg(short, long)]
+    export_name: Option<String>,
+}
+{% endhighlight %}
+
+<p>
+    Since we are treating the entire template string as one value with no directives,
+    there isn't any parsing yet. That'll come in future chapters.
+</p>
+
+<h2>Canonical ABI</h2>
+
+<p>
+    To implement the high-level interface we defined earlier,
+    we need to understand something called the canonical ABI
+    which defines the way that high-level component types
+    can be passed into and returned from coponents using integer values
+    and the Wasm linear memory.
+</p>
+
+<figure>
+    <img
+        src="/tc-1/canon-abi.svg"
+        width="400px"
+        height="115px"
+        alt="The canonical ABI connects the component model and core wasm"
+    />
+</figure>
+
+
+<p>
+    In the future, components won't be limited to just using the canonical ABI.
+    They'll be able to define custom adapters that match their internal memory representation,
+    but that's not available yet so we won't be using it.
+</p>
+
+<h3>Lifting and Lowering</h3>
+
+<p>
+    In the Canonical ABI, the Component Model is <q>higher</q> (as in higher-level)
+    than Core Wasm and Modules.
+    So, when things need to be converted upwards from Core Wasm to the Component Model, it's called <q>lifting</q>.
+    Conversely, when things need to be converted downards from the Component Model to Core Wasm, it's called <q>lowering</q>.
+</p>
+
+<figure>
+    <img
+        src="/tc-1/lift-lower.svg"
+        width="550px"
+        height="350px"
+        alt="Lifting types from Core Wasm to the Component Model and lowering them from Component Model to Core Wasm"
+    />
+</figure>
+
+<h3><q>Lifting</q> Function Exports</h3>
+
+<p>
+    Since we're exporting our render function, we'll end up defining it in a Core Wasm Module
+    and then lifting it into a Component.
+</p>
+
+
+
+<h2>Final Component</h2>
+
+WIP: this is mostly for my reference
+
+{% highlight "lisp" %}
+(component
+  (core module $mod
+    (type $mftype (func (result i32)))
+    (func $modfunc (type $mftype) (result i32)
+      i32.const 0
+    )
+    (memory $modmem 1)
+    (export "apply" (func 0))
+    (export "mem" (memory 0))
+    (data $return_area (i32.const 0) "\08\00\00\00\1a\00\00\00")
+    (data $template_data (i32.const 8) "Lorem ipsum dolor sit amet")
+  )
+  (core instance $mod (instantiate 0))
+  (alias $falias core export 0 "apply" (core func $modfunc))
+  (alias $malias core export 0 "mem" (core memory $modmem))
+  (type $cftype (func (result string)))
+  (func $compfunc (type $cftype) (canon lift (core func $falias) string-encoding=utf8 (memory $malias)))
+  (export "apply" (func 0))
+)
+{% endhighlight %}
