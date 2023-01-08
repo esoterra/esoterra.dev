@@ -1,5 +1,5 @@
 ---
-title: Template Compiler - Part 1
+title: Template Compiler - Part 1 (DRAFT)
 description: Compiling HTML (or other) templates to Wasm Components
 eleventyExcludeFromCollections: true
 author: Kyle Brown
@@ -7,17 +7,16 @@ date: 2023-01-08
 ---
 
 <p>
-    WebAssembly (Wasm) components are a compact, portable, secure, and fast units of code.
+    WebAssembly (Wasm) components are a compact, portable, and secure unit of code.
     They&apos;re a <q>compile target</q> with a binary format, not a source code language.
     So you won't write them by hand, you&apos;ll have tools to generate them for you.
 </p>
 
 <p>
-    In addition to things like Rust, C++, JavaScript, and Python,
+    In addition to languages like Rust, C++, JavaScript, and Python,
     we can compile new languages and new takes on old languages to Wasm components.
     For example, we can compile HTML templates (or templates generally) to Wasm components
-    that export a function like <code>render: (params) -> string</code>
-    or in the future <code>render: (params) -> stream&lt;u8&gt;</code>.
+    that export a function that returns a string.
 </p>
 
 <h2>Making a Template-to-Component Compiler</h2>
@@ -42,14 +41,14 @@ export apply: func() -> string
 {% endhighlight %}
 
 <p>
-    They'll contain all of the data and logic needed to create and return that string.
-    Those components can be instantiated by runtimes
+    The resulting components contain all of the data and logic needed to create and return that string
+    and can be instantiated by runtimes
     like <a href="https://github.com/bytecodealliance/wasmtime">wasmtime</a>
     and executed to produce the desired string.
 </p>
 
 <p>
-    Since runtimes like wasmtime compile to a variety of platforms including all the big ones
+    Since runtimes like wasmtime compile to a variety of platforms, including all the big ones,
     and have bindings for common programming languages, this <q>template</q> can be used essentially everywhere.
 </p>
 
@@ -126,14 +125,76 @@ struct Args {
     />
 </figure>
 
-<h3><q>Lifting</q> Function Exports</h3>
+<h3>Imported and Exported Functions</h3>
 
 <p>
-    Since we're exporting our render function, we'll end up defining it in a Core Wasm Module
-    and then lifting it into a Component.
+    When talking about functions, the direction of lifting and lowering corresponds
+    to whether the function is an export or import.
 </p>
 
+<p>
+    Exported functions are defined in the inner module and lifted to the component which re-exports it.
+    Imported functions are defined by a component import and lowered to the module import.
+</p>
 
+<figure>
+    <img
+        src="/tc-1/function-export-import.svg"
+        width="700px"
+        height="330px"
+        alt="Diagram showing module exports being lifted to component exports, and component imports being lowed to module imports"
+    />
+</figure>
+
+<p>
+    For exports and imports, the arguments go in the direction from caller to callee
+    and the returns go from callee to caller.
+</p>
+
+<figure>
+    <img
+        src="/tc-1/argument-return.svg"
+        width="700px"
+        height="250px"
+        alt="Diagram showing export arguments being lowered and return being lifted, with import arguments being raised and return being lowered"
+    />
+</figure>
+
+<h3>Template ABI</h3>
+
+<p>
+    The generated template function is exported, which means it will be defined in the module then lifted and rexported in the outer component.
+</p>
+
+<p>
+    It doesn't have any arguments, which would be lowered if they did exist, and it has a single string result, which will need to be lifted.
+</p>
+
+<p>
+    We will be encoding our strings in UTF-8 and so to encode a string return value we need
+    both the string data and that data's index in memory and length in bytes to also be in memory.
+    The index and length are encoded as 8 bytes where the first four are the index in little-endian
+    and the second four are the length in little-endian.
+</p>
+
+<figure>
+    <img
+        src="/tc-1/string-memory.svg"
+        width="700px"
+        height="250px"
+        alt="Diagram showing string memory being layed out with pointer and length together pointing at the text data"
+    />
+</figure>
+
+<p>
+    Now, to return this string we just need to return the integer index in memory of the (index,length) pair.
+</p>
+
+<h2>Generating the Module</h2>
+
+<p>
+    With all the canonical ABI details squared away, we can now generate our output module.
+</p>
 
 <h2>Final Component</h2>
 
