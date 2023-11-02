@@ -1,7 +1,6 @@
 ---
 title: Embeddable WebAssembly Parsers
 description: How Wasm lets us write portable solutions for parsing
-author: Kyle Brown
 date: 2022-03-07
 ---
 
@@ -178,7 +177,7 @@ pub fn parse(input: &[Token]) -> Vec<Branch> {
 <p>
     From there we just need to implement the tokenizing and parsing logic for our language of choice.
     I chose to use JSON since it is simple and practical.
-    The source code for this is <a href="https://github.com/Kylebrown9/EWP/blob/main/ewp-json/src/lib.rs">available on GitHub</a> but is too long to cover in this article.
+    The source code for this is <a href="https://github.com/esoterra/EWP/blob/main/ewp-json/src/lib.rs">available on GitHub</a> but is too long to cover in this article.
 </p>
 
 <h2>Consuming the Interface</h2>
@@ -280,7 +279,7 @@ printer::pretty_print(output);
 
 <p>
     Printing S-expressions is done with a few recursive functions that keep track of the indentation.
-    You can see how that&rsquo;s done and the rest of the tree-ewp tool <a href="https://github.com/Kylebrown9/EWP/tree/main/tree-ewp">in the GitHub repo</a>.
+    You can see how that&rsquo;s done and the rest of the tree-ewp tool <a href="https://github.com/esoterra/EWP/tree/main/tree-ewp">in the GitHub repo</a>.
 </p>
 
 <h2>Wrap Up</h2>

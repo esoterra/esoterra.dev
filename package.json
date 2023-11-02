@@ -7,7 +7,6 @@
     "start": "eleventy --serve",
     "build": "eleventy"
   },
-  "author": "Kyle Brown",
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
