@@ -1,5 +1,6 @@
 const pluginSEO = require("eleventy-plugin-seo");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ static: "/" });
@@ -14,7 +15,13 @@ module.exports = function(eleventyConfig) {
             titleDivider: "|",
             showPageNumbers: false
         }
-    })
+    });
+
+    // {{ date | friendlyDate('OPTIONAL FORMAT STRING') }}
+    // List of supported tokens: https://moment.github.io/luxon/docs/manual/formatting.html#table-of-tokens
+    eleventyConfig.addFilter("date", function(dateObj, format = 'LLLL d, y') {
+        return DateTime.fromJSDate(dateObj).toFormat(format);
+    });
 
     return {
         // Control which files Eleventy will process

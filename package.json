@@ -13,5 +13,8 @@
     "@11ty/eleventy": "^1.0.2",
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
     "eleventy-plugin-seo": "^0.5.2"
+  },
+  "dependencies": {
+    "luxon": "^3.4.3"
   }
 }

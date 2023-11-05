@@ -19,8 +19,11 @@ layout: root.html
 </p>
 
 <ul>
-    {% for article in collections.articles %}
-        <li><a href="{{ article.url }}">{{ article.data.title }}</a></li>
+    {% for article in collections.articles | reverse %}
+    <li>
+        <span class="mono">{{ article.data.date | date("yyyy-MM-dd") }}</span> -
+        <a href="{{ article.url }}">{{ article.data.title }}</a>
+    </li>
     {% endfor %}
 </ul>
 
