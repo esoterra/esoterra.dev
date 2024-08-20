@@ -2,6 +2,7 @@
 title = "Embeddable WebAssembly Parsers"
 description = "How Wasm lets us write portable solutions for parsing"
 date = 2022-03-07
+aliases = ["articles/embeddable-webassembly-parsers"]
 +++
 
 Developer tooling has grown by leaps and bounds.
