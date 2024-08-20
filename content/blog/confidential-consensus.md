@@ -1,6 +1,7 @@
 +++
 title = "Confidential Consensus"
 date = 2022-12-06
+aliases = ["articles/confidential-consensus"]
 +++
 
 Currently, the [Confidential Computing] community is focused on use cases with very high security requirements,
