@@ -309,5 +309,8 @@ iframe.youtube {
 
 embed[type="application/pdf"] {
     margin: 0.5rem 0;
-    height:50vh
+    height: 50vh;
+    border-bottom: solid;
+    border-bottom-color: #2a2a2e;
+    border-bottom-width: 16px;
 }
