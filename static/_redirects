@@ -3,4 +3,7 @@ https://kyleb.cc/* https://esoterra.dev/:splat 301!
 http://kyleb.dev/* http://esoterra.dev/:splat 301!
 https://kyleb.dev/* https://esoterra.dev/:splat 301!
 
+http://esoterra.dev/articles/* http://esoterra.dev/blog/:splat 301!
+https://esoterra.dev/articles/* https://esoterra.dev/blog/:splat 301!
+
 * /404.html 404
