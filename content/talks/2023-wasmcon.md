@@ -1,6 +1,6 @@
 +++
 title = "Wasm Components for Every Language"
-description = "Any language can be componentized and many are! Live demo included!
+description = "Any language can be componentized and many are! Live demo included!"
 date = 2023-09-06
 
 [extra]
