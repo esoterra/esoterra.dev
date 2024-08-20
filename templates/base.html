@@ -2,10 +2,43 @@
 <html lang="en">
 
 <head>
+    {% if section.title %}
+        {% set title = section.title %}
+    {% elif page.title %}
+        {% set title = page.title %}
+    {% else %}
+        {% set title = "Home" %}
+    {% endif %}
+
+    {% if section.description %}
+        {% set description = section.description %}
+    {% elif page.description %}
+        {% set description = page.description %}
+    {% else %}
+        {% set description = "Robin Brown's personal website" %}
+    {% endif %}
+
+    <title>{{ title }} | Esoterra</title>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
-    <title>{% block title %}Home{% endblock title %} | Esoterra</title>
+
+    <meta name="description" content="{{ description }}" />
+    <meta name="keywords" content="Robin Brown,esoterra,programming,rust,webassembly,wasm">
+    <link rel="author" href="https://hachyderm.io/@esoterra" />
+
+    {% if current_url %}
+        <link rel="canonical" href="{{ current_url }}" />
+        <meta property="og:url" content="{{ current_url }}">
+    {% endif %}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/banner.png">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:site_name" content="Esoterra">
+    <meta property="og:see_also" content="https://esoterra.dev">
 </head>
 
 <body>
