@@ -20,5 +20,12 @@
     {% if page.extra.website %}
     With more information available at the <a href="{{ page.extra.website }}">page for the talk</a>
     {% endif %}
+
+    <embed
+        src="/talks/{{ page.slug }}.pdf"
+        type="application/pdf"
+        width="100%"
+        title="Presentation Slides"
+    />
 </article>
 {% endblock content %}

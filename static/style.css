@@ -302,6 +302,12 @@ aside {
 }
 
 iframe.youtube {
+    margin: 0.5rem 0;
     width: 100%;
     aspect-ratio: 16 / 9;
+}
+
+embed[type="application/pdf"] {
+    margin: 0.5rem 0;
+    height:50vh
 }
