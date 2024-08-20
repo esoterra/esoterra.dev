@@ -13,12 +13,17 @@
 
     {{ page.content | safe }}
 
+    {% if page.extra.demo_repo %}
+    <p>A copy of the code the live demo is available in the <a href="{{ page.extra.demo_repo }}">demo Github repo</a>!</p>
+
+    {% endif %}
+
     {% if page.extra.youtube_stub %}
     <iframe class="youtube" src="https://www.youtube.com/embed/{{ page.extra.youtube_stub }}?si=nQkZgIeUGQ3u-vSh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     {% endif %}
 
     {% if page.extra.website %}
-    With more information available at the <a href="{{ page.extra.website }}">page for the talk</a>
+    <p>With more information available on the <a href="{{ page.extra.website }}">page for the talk</a>.</p>
     {% endif %}
 
     <embed

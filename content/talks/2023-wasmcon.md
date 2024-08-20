@@ -6,6 +6,7 @@ date = 2023-09-06
 [extra]
 venue = "WasmCon"
 
+demo_repo = "https://github.com/esoterra/wasmcon2023"
 website = "https://wasmcon2023.sched.com/event/1PCLo/wasm-components-for-every-language-kyle-brown-singlestore"
 video = "https://www.youtube.com/watch?v=IqehHuPYUSc"
 youtube_stub = "IqehHuPYUSc"
