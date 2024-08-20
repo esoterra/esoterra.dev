@@ -1,14 +1,13 @@
----
-title: "Home"
-layout: root.html
----
+{% extends "base.html" %}
+
+{% block content %}
 <h1>Esoterra</h1>
 
 <p>
     Compilers are our friends and constraints are guarantees.
 </p>
 
-<h2>Articles</h2>
+<h2>Posts</h2>
 
 <p>
     I write about <a href="https://webassembly.org/">WebAssembly (Wasm)</a>, <a href="https://www.rust-lang.org/">Rust</a>, and other technical topics.
@@ -19,10 +18,10 @@ layout: root.html
 </p>
 
 <ul>
-    {% for article in collections.articles | reverse %}
+    {% for post in section.pages %}
     <li>
-        <span class="mono">{{ article.data.date | date("yyyy-MM-dd") }}</span> -
-        <a href="{{ article.url }}">{{ article.data.title }}</a>
+        <span class="mono">{{ post.date | date(format="%Y-%m-%d") }}</span> -
+        <a href="{{ post.path }}">{{ post.title }}</a>
     </li>
     {% endfor %}
 </ul>
@@ -38,3 +37,4 @@ layout: root.html
 </p>
 
 <br>
+{% endblock content %}
