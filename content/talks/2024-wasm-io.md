@@ -1,5 +1,6 @@
 +++
 title = "Claw and Component-Native Languages / Toolchains"
+description = "Why new languages and toolchains (like Claw!) are promising!"
 date = 2024-03-15
 
 [extra]

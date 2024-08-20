@@ -1,5 +1,6 @@
 +++
 title = "Package Transparency for WebAssembly Registries"
+description = "Combining Certificate Transparency and Package Management into a new protocol!"
 date = 2023-02-01
 
 [extra]

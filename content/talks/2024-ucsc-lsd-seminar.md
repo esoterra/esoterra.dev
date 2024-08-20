@@ -1,5 +1,6 @@
 +++
-title = "WebAssembly Components: The Modular Polyglot Ecosystem We Need "
+title = "WebAssembly Components: The Modular Polyglot Ecosystem We Need"
+description = "A deep dive into Wasm and the Component Model!"
 date = 2024-05-10
 
 [extra]
