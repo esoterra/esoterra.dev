@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">{{ section.title }}</h1>
+
+<p>
+    Communicating is very important to me and giving talks at conferences and seminars,
+    while exhausting, is a fun and rewarding way to do that.
+</p>
+
+<p>
+    If you would like me to speak at your conference, please send an email
+    to me at this domain! (literally, my account name is <q>me</q> and the domain is this one)
+</p>
+
+{% for page in section.pages %}
+
+{% set page_time = page.date | date(format="%s") | int %}
+{% if page_time > 1701355388 %}
+<a href="{{ page.permalink | safe }}">
+    <section class="talk">
+        <h2>{{ page.title }}</h1>
+
+        <h3 class="subtitle">On {{ page.date | date(format="%Y-%m-%d") }} at {{ page.extra.venue }}</h2>
+        <p></p>
+    </section>
+  </a>
+{% endif %}
+
+{% endfor %}
+
+<br>
+
+<h1>Old Talks</h1>
+
+<p>
+    These talks are from before I started using the name Robin professionally.
+    They are an important part of my experience even if I no longer use the name I did then.
+    How about everyone just be cool about that?
+</p>
+
+{% for page in section.pages %}
+
+{% set page_time = page.date | date(format="%s") | int %}
+{% if page_time < 1701355388 %}
+<a href="{{ page.permalink | safe }}">
+    <section class="talk">
+        <h2>{{ page.title }}</h1>
+
+        <h3 class="subtitle">On {{ page.date | date(format="%Y-%m-%d") }} at {{ page.extra.venue }}</h2>
+        <p></p>
+    </section>
+</a>
+{% endif %}
+
+{% endfor %}
+
+{% endblock content %}

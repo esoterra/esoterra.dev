@@ -1,8 +1,8 @@
 +++
-title = "List of blog posts"
+title = "List of Blog Posts"
 sort_by = "date"
-template = "blog.html"
-page_template = "blog-post.html"
+template = "section/blog.html"
+page_template = "section/blog-page.html"
 insert_anchor_links = "left"
 transparent = true
 +++
