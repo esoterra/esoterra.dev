@@ -1,6 +1,6 @@
 +++
 title = "Conference Talks"
-description = "Conference talks that I've given."
+description = "Robin Brown's conference talks."
 sort_by = "date"
 template = "section/talks.html"
 page_template = "section/talk-page.html"
