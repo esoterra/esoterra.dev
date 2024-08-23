@@ -1,7 +1,7 @@
 +++
 title = "Template Compiler (DRAFT)"
 description = "Compiling HTML (or other) templates to Wasm Components"
-date = 2023-01-08
+date = "2023-01-08"
 aliases = ["articles/template-compiler"]
 +++
 

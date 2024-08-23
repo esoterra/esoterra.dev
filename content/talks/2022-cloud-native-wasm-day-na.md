@@ -1,7 +1,7 @@
 +++
 title = "SIG-Registries and Standardizing Package Management in WebAssembly"
 description = "Introducing a new registry group in the Bytecode Alliance and what they're working on!"
-date = 2022-10-24
+date = "2022-10-24"
 
 [extra]
 venue = "KubeCon NA - Cloud Native Wasm Day"

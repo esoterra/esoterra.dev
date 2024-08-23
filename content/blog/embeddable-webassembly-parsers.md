@@ -1,7 +1,7 @@
 +++
 title = "Embeddable WebAssembly Parsers"
 description = "How Wasm lets us write portable solutions for parsing"
-date = 2022-03-07
+date = "2022-03-07"
 aliases = ["articles/embeddable-webassembly-parsers"]
 +++
 

@@ -1,7 +1,7 @@
 +++
 title = "WebAssembly Components: The Modular Polyglot Ecosystem We Need"
 description = "A deep dive into Wasm and the Component Model!"
-date = 2024-05-10
+date = "2024-05-10"
 
 [extra]
 venue = "The UCSC Languages, Systems, and Data (LSD) Seminar"

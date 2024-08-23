@@ -1,7 +1,7 @@
 +++
 title = "Wasm Components for Every Language"
 description = "Any language can be componentized and many have been! Live demo included!"
-date = 2023-09-06
+date = "2023-09-06"
 
 [extra]
 venue = "WasmCon"

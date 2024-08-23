@@ -1,6 +1,6 @@
 +++
 title = "Confidential Consensus"
-date = 2022-12-06
+date = "2022-12-06"
 aliases = ["articles/confidential-consensus"]
 +++
 
