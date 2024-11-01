@@ -1,5 +1,6 @@
 +++
 title = "A More Perfect Derive"
+description = "A refresher on derive & perfect derive with some design options enumerated"
 date = "2024-11-01"
 +++
 
