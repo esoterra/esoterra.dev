@@ -175,4 +175,5 @@ Out of these options, I think field attributes are probably the most elegant. Gi
 I don't currently have the time to implement this proposal or write an RFC, but hopefully this will bring some attention to perfect derive and ways to solve it.
 
 Cheers,
-Robin
+
+**-Robin**
