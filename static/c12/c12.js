@@ -22,20 +22,35 @@ function onload() {
     const nextSecond = 1000 - nowMilliseconds;
 
     function updateClocks() {
+        const dayStart = new Date();
+        dayStart.setHours(0);
+        dayStart.setMinutes(0);
+        dayStart.setSeconds(0);
+        dayStart.setMilliseconds(0);
+
+        const noon = new Date();
+        noon.setHours(12);
+        noon.setMinutes(0);
+        noon.setSeconds(0);
+        noon.setMilliseconds(0);
+
         const time = new Date();
-        const hours = time.getHours();
-        var formattedTime;
-        if (hours < 12) {
-            const hour = 12-hours;
-            const minute = String(60-time.getMinutes()).padStart(2, "0");
-            const second = String(60-time.getSeconds()).padStart(2, "0");
-            formattedTime = `${hour}:${minute}:${second} a.m.`;
+
+        var suffix;
+        if (time < noon) {
+            const millisTillNoon = noon.getTime() - time.getTime();
+            time.setTime(dayStart.getTime() + millisTillNoon);
+            suffix = " a.m.";
         } else {
-            const hour = hours-12;
-            const minute = String(time.getMinutes()).padStart(2, "0");
-            const second = String(time.getSeconds()).padStart(2, "0");
-            formattedTime = `${hour}:${minute}:${second} p.m.`;
+            const millisAfterNoon = time.getTime() - noon.getTime();
+            time.setTime(dayStart.getTime() +millisAfterNoon);
+            suffix = " p.m.";
         }
+        const hour = time.getHours();
+        const minute = String(time.getMinutes()).padStart(2, "0");
+        const second = String(time.getSeconds()).padStart(2, "0");
+        const formattedTime = `${hour}:${minute}:${second}${suffix}`;
+    
         clocks.forEach((element) => element.innerHTML = formattedTime);
         setTimeout(updateClocks, 1000);
     }
