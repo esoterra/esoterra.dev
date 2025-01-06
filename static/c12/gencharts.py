@@ -332,7 +332,7 @@ contents.append(PolyLine("#000", False, 4, [Point(0,0), Point(0,12)]))
 # Data
 contents.append(PolyLine("#BA5624", False, 4, [Point(0,12), Point(12,0)]))
 contents.append(PolyLine("#BA5624", False, 4, [Point(12,0), Point(24,12)]))
-contents.append(Circle(Point(0, 12), 0.25, "#BA5624", 4, "#FFFFFF"))
+contents.append(Circle(Point(0, 12), 0.25, "#BA5624", 4, "#BA5624"))
 contents.append(Circle(Point(12, 0), 0.25, "#BA5624", 4, "#BA5624"))
 contents.append(Circle(Point(24, 12), 0.25, "#BA5624", 4, "#BA5624"))
 
