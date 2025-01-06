@@ -217,6 +217,7 @@ pre {
 code {
     font-family: "ubuntu-mono" !important;
     width: 100%;
+    overflow: auto;
 }
 
 code:not(pre code) {
