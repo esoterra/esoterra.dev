@@ -265,11 +265,14 @@ print()
 
 contents = []
 # Vertical guides
-contents.append(PolyLine("#6D606F", True, 2, [Point(12,0), Point(12,12)]))
-contents.append(PolyLine("#6D606F", True, 2, [Point(24,0), Point(24,12)]))
+contents.append(PolyLine("#6D606F", True, 2, [Point(1,0), Point(1,13)]))
+contents.append(PolyLine("#6D606F", True, 2, [Point(13,0), Point(13,13)]))
+contents.append(PolyLine("#6D606F", True, 2, [Point(24,0), Point(24,13)]))
 
 # Horizontal guides
+contents.append(PolyLine("#6D606F", True, 2, [Point(0,1), Point(24,1)]))
 contents.append(PolyLine("#6D606F", True, 2, [Point(0,12), Point(24,12)]))
+contents.append(PolyLine("#6D606F", True, 2, [Point(0,13), Point(24,13)]))
 
 # Y-Axis Markers
 for i in reversed(range(0,13)):
@@ -284,13 +287,16 @@ for i in range(1,13):
 
 # Axis
 contents.append(PolyLine("#000", False, 4, [Point(0,0), Point(24,0)]))
-contents.append(PolyLine("#000", False, 4, [Point(0,0), Point(0,12)]))
+contents.append(PolyLine("#000", False, 4, [Point(0,0), Point(0,13)]))
 # Data
-contents.append(PolyLine("#BA5624", False, 4, [Point(0,0), Point(12,12)]))
-contents.append(Circle(Point(0, 0), 0.25, "#BA5624", 4, "#FFFFFF"))
-contents.append(Circle(Point(12, 12), 0.25, "#BA5624", 4, "#BA5624"))
-contents.append(PolyLine("#BA5624", False, 4, [Point(12,0), Point(24,12)]))
-contents.append(Circle(Point(12, 0), 0.25, "#BA5624", 4, "#FFFFFF"))
+contents.append(PolyLine("#BA5624", False, 4, [Point(0,12), Point(1,13)]))
+contents.append(Circle(Point(0, 12), 0.25, "#BA5624", 4, "#BA5624"))
+contents.append(Circle(Point(1, 13), 0.25, "#BA5624", 4, "#FFFFFF"))
+contents.append(PolyLine("#BA5624", False, 4, [Point(1,1), Point(13,13)]))
+contents.append(Circle(Point(1, 1), 0.25, "#BA5624", 4, "#BA5624"))
+contents.append(Circle(Point(13, 13), 0.25, "#BA5624", 4, "#FFFFFF"))
+contents.append(PolyLine("#BA5624", False, 4, [Point(13,1), Point(24,12)]))
+contents.append(Circle(Point(13, 1), 0.25, "#BA5624", 4, "#BA5624"))
 contents.append(Circle(Point(24, 12), 0.25, "#BA5624", 4, "#BA5624"))
 
 print("Figure 3:")
