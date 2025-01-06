@@ -246,7 +246,7 @@ contents.append(Text(Point(18.5, -2), "p.m.", "middle", "middle"))
 
 # Axis
 contents.append(PolyLine("#000", False, 4, [Point(0,0), Point(24,0)]))
-contents.append(PolyLine("#000", False, 4, [Point(0,0), Point(0,24)]))
+contents.append(PolyLine("#000", False, 4, [Point(0,0), Point(0,25)]))
 # Data
 contents.append(PolyLine("#BA5624", False, 4, [Point(0,24), Point(1,25)]))
 contents.append(Circle(Point(0, 24), 0.25, "#BA5624", 4, "#BA5624"))
