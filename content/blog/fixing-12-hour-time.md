@@ -12,8 +12,8 @@ This confusing complexity isn't intrinsic! It can be removed!
 
 ## 12-Hour Time is Discontinuous
 
-A sensible 12-hour time system would be continuous and linear within it's 12-hour segments. Any times `(N):mm a.m.` and `(N+1):mm a.m.` should be 1 hour apart and any `(N):mm p.m.` and `(N+1):mm p.m.` should be too.
-Sadly, `12:30 p.m.` is actually hours 11 hours before `11:30 p.m.`.
+A sensible 12-hour time system would be continuous and linear within its 12-hour segments. Any times `(N):mm a.m.` and `(N+1):mm a.m.` should be 1 hour apart and any `(N):mm p.m.` and `(N+1):mm p.m.` should be too.
+Sadly, `12:30 p.m.` is actually 11 hours before `11:30 p.m.`.
 In my opinion, this is where a lot of the confusion about hours of the day and distances in time comes from.
 
 ## Implied 24-Hour Value
@@ -89,4 +89,4 @@ For now, please accept this digital clock showing the current time in the propos
 
 The code for this blog post is available online and licensed under the Apache 2.0 license.
 * [`c12.js`](/c12/c12.js) - a simple script that turns any element with class `c12-clock` into a live **C12** clock.
-* [`gen_c12_charts.py`](/c12/gencharts.py) - code for generating all of the SVG charts in this blog post.
+* [`gencharts.py`](/c12/gencharts.py) - code for generating all of the SVG charts in this blog post.
