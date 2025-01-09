@@ -48,7 +48,7 @@ For the next step we're going to take a hint from what "a.m." and "p.m." actuall
 * **ante meridiem** which translates to "before midday"
 * **post meridiem** which translates to "after midday"
 
-What's strange about this is that "12 a.m." isn't really "12 hours before midday" though "12 p.m." does mean "12 hours after midday, but what if they did match?
+What's strange about this is that "11 a.m." isn't really "11 hours before midday" though "11 p.m." does mean "11 hours after midday, but what if they did match?
 What if `HH:mm a.m.` meant `HH` hours and `mm` minutes before noon instead?
 
 Instead of hours increasing up till 12 and then resetting to 1, they would go up to 12 and down to zero and then back up and then back down.
