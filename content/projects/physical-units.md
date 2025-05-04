@@ -1,6 +1,6 @@
 +++
 title = "Physical Units"
-description = "A library for working with values that have physical units in a simple sound way. "
+description = "A library for working with values that have physical units in a simple sound way"
 weight = 3
 
 [extra]
