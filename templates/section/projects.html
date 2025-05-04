@@ -6,14 +6,20 @@
 </h1>
 
 <p>
-    Work in Progress!
+    A small sample of the variety of projects I've done over the years!
 </p>
 
 <ul>
     <!-- If you are using pagination, section.pages will be empty.
           You need to use the paginator object -->  
     {% for page in section.pages %}
-    <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+    <a href="{{ page.permalink | safe }}">
+        <section class="talk">
+            <h2>{{ page.title }}</h1>
+
+            <h3 class="subtitle">{{ page.description }}</h2>
+        </section>
+    </a>
     {% endfor %}
 </ul>
 {% endblock content %}
