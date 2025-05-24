@@ -89,9 +89,9 @@ For now, please accept this digital clock showing the current time in the propos
 
 Hi! If we just talked about this post at Arcana, what plant did we talk about that you write about?
 
-<input type="hidden" id="slipper-cypher-text" name="cypher-text" value="3d815bd048660e32d97c73ec08fa69a3e6ed4759afde2dd9ceab2be6189834010cc6a4c2f694362f66b11683ac0fe417ba8f70ac598f3b1c7cef5905017970827b605ca7cdea3f557c768adbb7235b37">
+<input type="hidden" id="slipper-cypher-text" name="cypher-text" value="1e5c26b69f9b825f9c5bd115af0b81fb10ee6767c16f552f76944b085ba7b3b02490cac8e696b507877634194353244262ba28c0feb836568455ba08eb0d3bf7473ae44fb38e71995789d1a1971f83c2ec0ac933152c2ddeadeef6e5761da1359f6a1ef1cc881198b75fbf1f0a99bd6e50e2e3b1ef815ee75d166eb49dd6afac38649b0b283948ab7fe3b12bf5a9663527c6c9860abc13cc81dd5f24fdee9c72">
 <input type="text" id="slipper-input" name="input">
-<div id="slipper-output"></div>
+<p id="slipper-output"></p>
 <script src="/c12/slipper.js"></script>
 
 ## Code
