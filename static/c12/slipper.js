@@ -42,7 +42,7 @@ async function decrypt(encryptedText, keyObject) {
 async function encryptData(text, password) {
 	const derivation = await getDerivation(hash, salt, password, iterations, keyLength);
 	const keyObject = await getKey(derivation);
-	const encryptedObject = await encrypt(JSON.stringify(text), keyObject);
+	const encryptedObject = await encrypt(text, keyObject);
 	return encryptedObject;
 }
 
@@ -77,7 +77,7 @@ async function setupSlipper() {
     let lastValue = "";
 
     inputElement.addEventListener('input', (ev) => {
-        let newValue = inputElement.value.toLowerCase();
+        let newValue = inputElement.value.toLowerCase().trim();
         if(newValue.charAt( newValue.length-1 ) == "s") {
             newValue = newValue.slice(0, -1)
         }
@@ -89,7 +89,6 @@ async function setupSlipper() {
                     const plainTextRecovered = await decryptData(cypherTextBytes, newValue);
                     outputElement.innerText = plainTextRecovered
                 } catch (e) {
-                    console.error(e)
                     outputElement.innerText = "Password incorrect"
                 }
             }
