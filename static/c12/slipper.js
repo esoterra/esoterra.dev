@@ -77,7 +77,10 @@ async function setupSlipper() {
     let lastValue = "";
 
     inputElement.addEventListener('input', (ev) => {
-        const newValue = inputElement.value;
+        let newValue = inputElement.value.toLowerCase();
+        if(newValue.charAt( newValue.length-1 ) == "s") {
+            newValue = newValue.slice(0, -1)
+        }
         if (newValue != lastValue) {
             lastValue = newValue;
 
