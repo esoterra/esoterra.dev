@@ -85,15 +85,6 @@ For now, please accept this digital clock showing the current time in the propos
 </figure>
 <script src="/c12/c12.js"></script>
 
-## Missed Connection
-
-Hi! If we just talked about this post at Arcana, what plant did we talk about that you write about?
-
-<input type="hidden" id="slipper-cypher-text" name="cypher-text" value="1e5c26b69f9b825f9c5bd115af0b81fb10ee6767c16f552f76944b085ba7b3b02490cac8e696b507877634194353244262ba28c0feb836568455ba08eb0d3bf7473ae44fb38e71995789d1a1971f83c2ec0ac933152c2ddeadeef6e5761da1359f6a1ef1cc881198b75fbf1f0a99bd6e50e2e3b1ef815ee75d166eb49dd6afac38649b0b283948ab7fe3b12bf5a9663527c6c9860abc13cc81dd5f24fdee9c72">
-<input type="text" id="slipper-input" name="input">
-<p id="slipper-output"></p>
-<script src="/c12/slipper.js"></script>
-
 ## Code
 
 The code for this blog post is available online and licensed under the Apache 2.0 license.
