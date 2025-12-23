@@ -93,7 +93,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     background-color: var(--green-lighter);
-	line-height: 32px;
+	line-height: 28px;
+    font-size: 90%;
 }
 ol, ul {
 	list-style: none;
@@ -138,7 +139,7 @@ nav > a:hover {
 }
 
 main {
-    max-width: 800px;
+    max-width: 38rem;
     margin-left: auto;
     margin-right: auto;
 
@@ -164,13 +165,13 @@ p, ul, aside {
 
 h1 {
     font-weight: 700;
-    font-size: 200%;
+    font-size: 175%;
     margin-bottom: 24px;
 }
 
 h2 {
     font-weight: 700;
-    font-size: 150%;
+    font-size: 125%;
     margin-top: 32px;
     margin-bottom: 12px;
 }
