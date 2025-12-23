@@ -5,7 +5,7 @@
 {% block content %}
 <article>
     <h1 class="title">{{ page.title }}</h1>
-    <h2 class="subtitle">On {{ page.date | date(format="%Y-%m-%d") }} at {{ page.extra.venue }}</h2>
+    <p class="subtitle"><strong>On {{ page.date | date(format="%Y-%m-%d") }} at {{ page.extra.venue }}</strong></p>
 
     {% if page.extra.co_speaker %}
     <p>I gave this talk with {{ page.extra.co_speaker }}!</p>
