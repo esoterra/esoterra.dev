@@ -114,12 +114,6 @@ header {
     margin-bottom: 16px;
 }
 
-@media (max-width: 1200px) {
-    header {
-        background-color: white;
-    }
-}
-
 nav {
     display: flex;
     flex-direction: row;
