@@ -57,10 +57,10 @@
 }
 
 html {
-    --purple-dark: #382c1d;
-    --purple-lighter: #382f1dd0;
-    --orange-bright: #bd4d15;
-    --orange-darker: #BA5624;
+    --green-dark: #37381d;
+    --green-lighter: #37381dd0;
+    --brown-bright: #b17354;
+    --brown-darker: #613520;
 
     --margin-background: #381d2ad0;
     --content-background: rgb(240,240,240);
@@ -92,7 +92,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-    background-color: var(--purple-lighter);
+    background-color: var(--green-lighter);
 	line-height: 32px;
 }
 ol, ul {
@@ -105,7 +105,7 @@ table {
 
 /* Layout */
 header {
-    background-color: var(--purple-dark);
+    background-color: var(--green-dark);
     position: sticky;
     top: 0;
     z-index: 800;
@@ -133,7 +133,7 @@ nav > a, nav > a:visited {
 }
 
 nav > a:hover {
-    color: var(--purple-dark);
+    color: var(--green-dark);
     background-color: white;
 }
 
@@ -154,7 +154,7 @@ html {
     /* font-family: Helvetica Neue,Helvetica,Arial,sans-serif; */
     font-family: "ubuntu";
     font-size: 1.2em;
-    color: var(--purple-dark);
+    color: var(--green-dark);
     text-rendering: optimizeLegibility;
 }
 
@@ -190,13 +190,13 @@ h4 {
 
 a, a:visited {
     font-family: "ubuntu";
-    color: var(--orange-bright);
+    color: var(--brown-bright);
     text-decoration: none;
 }
 
 a:hover {
     font-family: "ubuntu";
-    color: var(--purple-dark);
+    color: var(--green-dark);
     text-decoration: none;
 }
 
@@ -233,7 +233,7 @@ code:not(pre code) {
 
 blockquote {
     padding-left: 8px;
-    border-left: 4px solid var(--orange-darker);
+    border-left: 4px solid var(--brown-darker);
     background-color: rgba(109,113,46, 0.15);
 }
 
@@ -276,7 +276,7 @@ figcaption {
 
 aside {
     padding-left: 16px;
-    border-left: 4px solid var(--purple-dark);
+    border-left: 4px solid var(--green-dark);
 }
 
 .title:has(+ .subtitle) {
@@ -306,7 +306,7 @@ aside {
 }
 
 .zola-anchor:hover {
-    color: var(--purple-dark) !important;
+    color: var(--green-dark) !important;
 }
 
 section.talk {
@@ -317,14 +317,14 @@ section.talk {
     border: solid;
     border-radius: 0.6em;
     border-width: 4px;
-    color: var(--purple-dark);
-    border-color: var(--purple-dark);
+    color: var(--green-dark);
+    border-color: var(--green-dark);
     background-color: #47351034;
 }
 
 section.talk:hover {
-    color: var(--orange-bright);
-    border-color: var(--orange-darker);
+    color: var(--brown-bright);
+    border-color: var(--brown-darker);
     background-color: white;
 }
 
@@ -349,7 +349,7 @@ embed[type="application/pdf"] {
     font-size: 400%;
 
     color: #EEEEEE;
-    background-color: var(--purple-dark);
+    background-color: var(--green-dark);
     line-height: 1.5;
     padding: 8px;
     padding-left: 24px;
@@ -362,6 +362,6 @@ embed[type="application/pdf"] {
 table, th, td {
     border: solid;
     border-width: 4px;
-    border-color: var(--purple-dark);
+    border-color: var(--green-dark);
     padding: 8px;
 }
