@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+        
+    
+
+    
+        
+    
+
+    <title>Workspaces on Wasm! (Wow) | Esoterra</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+
+    <meta name="description" content=" The sandboxed workspace manager for development environments " />
+    <meta name="keywords" content="Robin Brown,esoterra,programming,rust,webassembly,wasm">
+    <link rel="author" href="https://hachyderm.io/@esoterra" />
+
+    
+        <link rel="canonical" href="https:&#x2F;&#x2F;esoterra.dev&#x2F;projects&#x2F;wow&#x2F;" />
+        <meta property="og:url" content="https:&#x2F;&#x2F;esoterra.dev&#x2F;projects&#x2F;wow&#x2F;">
+    
+
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/banner.png">
+    <meta property="og:description" content=" The sandboxed workspace manager for development environments ">
+    <meta property="og:title" content="Workspaces on Wasm! (Wow)">
+    <meta property="og:site_name" content="Esoterra">
+    <meta property="og:see_also" content="https://esoterra.dev">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/projects">Projects</a>
+            <a href="/talks">Talks</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article>
+    <a href="https:&#x2F;&#x2F;github.com&#x2F;esoterra&#x2F;wow"><h1 class="title">Workspaces on Wasm! (Wow)</h1></a>
+    <p class="subtitle"><strong> The sandboxed workspace manager for development environments </strong></p>
+    <h2 id="installing-wow">Installing <code>wow</code></h2>
+<pre data-lang="bash" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-bash "><code class="language-bash" data-lang="bash"><span>cargo install --git https://github.com/esoterra/wow wow
+</span><span>
+</span><span>vim ~/.bashrc </span><span style="color:#608b4e;"># add `$HOME/.wow/bin` to path
+</span></code></pre>
+<h2 id="initialized-a-workspace">Initialized a workspace</h2>
+<p>Running <code>wow init</code> will set up the current workspace.
+The current directory must contain a <code>wow.kdl</code> file.</p>
+<pre data-lang="bash" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-bash "><code class="language-bash" data-lang="bash"><span>$ git clone https://github.com/foo/bar
+</span><span>
+</span><span>$ cd bar
+</span><span>
+</span><span>$ cat wow.kdl
+</span><span>registry </span><span style="color:#d69d85;">&quot;ba.wa.dev&quot;
+</span><span>
+</span><span>tool </span><span style="color:#d69d85;">&quot;wasm-tools&quot;</span><span> package=</span><span style="color:#d69d85;">&quot;ba:wasm-tools&quot;</span><span> version=</span><span style="color:#d69d85;">&quot;1.2&quot;
+</span><span>
+</span><span>$ wow init
+</span></code></pre>
+<p>In this scenario initializing</p>
+<ul>
+<li>Detects the <code>wow.kdl</code> config file</li>
+<li>Pulls <code>ba:wasm-tools@1.2</code></li>
+<li>Creates <code>~/.wow/shims/wasm-tools</code> shim</li>
+</ul>
+<h2 id="using-commands">Using commands</h2>
+<p>Once you've installed wow and initialized your workspace, you can call the defined tools using the names you specified in your <code>wow.kdl</code> file.</p>
+<pre data-lang="bash" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-bash "><code class="language-bash" data-lang="bash"><span>$ wasm-tools component new my-core.wasm -o my-component.wasm
+</span></code></pre>
+<h2 id="wip-tools">WIP tools</h2>
+<p>We're going to work on getting the following tools compiled to components, available in registries, and usable in <code>wow</code> as soon as we can.</p>
+<ul>
+<li><input disabled="" type="checkbox"/>
+wasm-tools</li>
+<li><input disabled="" type="checkbox"/>
+wac</li>
+<li><input disabled="" type="checkbox"/>
+claw-cli</li>
+</ul>
+
+</article>
+
+    </main>
+</body>
+
+</html>

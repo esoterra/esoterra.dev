@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+        
+    
+
+    
+        
+    
+
+    <title>Refcursed | Esoterra</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+
+    <meta name="description" content="A library for the things you can, but should not, do with refcounts" />
+    <meta name="keywords" content="Robin Brown,esoterra,programming,rust,webassembly,wasm">
+    <link rel="author" href="https://hachyderm.io/@esoterra" />
+
+    
+        <link rel="canonical" href="https:&#x2F;&#x2F;esoterra.dev&#x2F;projects&#x2F;refcursed&#x2F;" />
+        <meta property="og:url" content="https:&#x2F;&#x2F;esoterra.dev&#x2F;projects&#x2F;refcursed&#x2F;">
+    
+
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/banner.png">
+    <meta property="og:description" content="A library for the things you can, but should not, do with refcounts">
+    <meta property="og:title" content="Refcursed">
+    <meta property="og:site_name" content="Esoterra">
+    <meta property="og:see_also" content="https://esoterra.dev">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/projects">Projects</a>
+            <a href="/talks">Talks</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article>
+    <a href="https:&#x2F;&#x2F;github.com&#x2F;esoterra&#x2F;refcursed"><h1 class="title">Refcursed</h1></a>
+    <p class="subtitle"><strong>A library for the things you can, but should not, do with refcounts</strong></p>
+    <p>Refcursed is a library for the things you can, but should not, do with the ability to determine the number of current references to any object.
+At import time, the library emits a warning because really what are you doing.</p>
+<h1 id="use-cases">Use Cases</h1>
+<h2 id="bringing-balance-to-the-universe">Bringing balance to the universe</h2>
+<p>Did you know that the Python runtime knows how many references to <code>True</code> and <code>False</code> exist at any given time?</p>
+<p>Have you ever wanted to bring balance to your programs and know that they're just as <code>True</code> as they are <code>False</code>?</p>
+<p>Look no further! Refcursed provides one simple function you can call to right the universe.</p>
+<pre data-lang="py" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-py "><code class="language-py" data-lang="py"><span style="color:#9b9b9b;">import </span><span>refcursed
+</span><span>refcursed.balance_bool()
+</span></code></pre>
+<h2 id="unit-testing">Unit testing</h2>
+<p>Have you ever wanted to make sure that code you're calling isn't creating extra aliases to a certain value?</p>
+<p>Now you can! With the new <code>expect_ref_delta</code> context manager (compare to <code>pytest.raises</code>), you can right unit tests that ensure exactly the amount of references you expect to be added/removed are.</p>
+<pre data-lang="py" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-py "><code class="language-py" data-lang="py"><span style="color:#9b9b9b;">from </span><span>refcursed </span><span style="color:#9b9b9b;">import </span><span>expect_ref_delta
+</span><span>
+</span><span>my_list = []
+</span><span style="color:#569cd6;">with </span><span>expect_ref_delta(</span><span style="color:#b5cea8;">201</span><span>, delta=</span><span style="color:#b5cea8;">2</span><span>):
+</span><span>    my_list.append(</span><span style="color:#b5cea8;">201</span><span>)
+</span><span>    my_list.append(</span><span style="color:#b5cea8;">201</span><span>)
+</span></code></pre>
+<p>If you want to check multiple at the same time, we even have a pluralized version.</p>
+<pre data-lang="py" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-py "><code class="language-py" data-lang="py"><span style="color:#9b9b9b;">from </span><span>refcursed </span><span style="color:#9b9b9b;">import </span><span>expect_ref_deltas
+</span><span>
+</span><span>my_list = []
+</span><span style="color:#569cd6;">with </span><span>expect_ref_deltas([</span><span style="color:#b5cea8;">201</span><span>, </span><span style="color:#b5cea8;">220</span><span>], delta=</span><span style="color:#b5cea8;">1</span><span>):
+</span><span>    my_list.append(</span><span style="color:#b5cea8;">201</span><span>)
+</span><span>    my_list.append(</span><span style="color:#b5cea8;">220</span><span>)
+</span></code></pre>
+<h2 id="counting-sort-but-better-worse">Counting sort but <del>better</del> worse</h2>
+<p>The thing about counting sort is that you have to have counters for your different values. This is really silly though, because the runtime has counters for all of them anyway, the refcount. Our state of the art counting sort implementation uses those counters instead of its own for... performance?</p>
+<pre data-lang="py" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-py "><code class="language-py" data-lang="py"><span style="color:#9b9b9b;">import </span><span>refcursed
+</span><span>result = refcursed.refcounting_sort([</span><span style="color:#b5cea8;">4</span><span>, </span><span style="color:#b5cea8;">4</span><span>, </span><span style="color:#b5cea8;">4</span><span>, </span><span style="color:#b5cea8;">3</span><span>, </span><span style="color:#b5cea8;">2</span><span>, </span><span style="color:#b5cea8;">1</span><span>, </span><span style="color:#b5cea8;">1</span><span>])
+</span><span style="color:#569cd6;">assert </span><span>result = [</span><span style="color:#b5cea8;">1</span><span>, </span><span style="color:#b5cea8;">1</span><span>, </span><span style="color:#b5cea8;">2</span><span>, </span><span style="color:#b5cea8;">3</span><span>, </span><span style="color:#b5cea8;">4</span><span>, </span><span style="color:#b5cea8;">4</span><span>, </span><span style="color:#b5cea8;">4</span><span>]
+</span></code></pre>
+<h2 id="counting-values">Counting values</h2>
+<p>The same mechanism that lets us perform counting sort, taking refcounts before and after deleting things, allows us to count arbitrary lists contents as well.</p>
+<pre data-lang="py" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-py "><code class="language-py" data-lang="py"><span style="color:#9b9b9b;">import </span><span>refcursed
+</span><span>result = refcursed.count_values([</span><span style="color:#b5cea8;">4</span><span>, </span><span style="color:#b5cea8;">4</span><span>, </span><span style="color:#b5cea8;">4</span><span>, </span><span style="color:#b5cea8;">3</span><span>, </span><span style="color:#b5cea8;">2</span><span>, </span><span style="color:#b5cea8;">1</span><span>, </span><span style="color:#b5cea8;">1</span><span>])
+</span><span style="color:#569cd6;">assert </span><span>result == {
+</span><span>    </span><span style="color:#b5cea8;">1</span><span>: </span><span style="color:#b5cea8;">2</span><span>,
+</span><span>    </span><span style="color:#b5cea8;">2</span><span>: </span><span style="color:#b5cea8;">1</span><span>,
+</span><span>    </span><span style="color:#b5cea8;">3</span><span>: </span><span style="color:#b5cea8;">1</span><span>,
+</span><span>    </span><span style="color:#b5cea8;">4</span><span>: </span><span style="color:#b5cea8;">3
+</span><span>}
+</span></code></pre>
+<h2 id="comparing-and-sorting-by-refcount">Comparing and Sorting by refcount</h2>
+<p>The library also provides utilities for comparing the refcounts of two values and sorting sequences of values by refcount.</p>
+<pre data-lang="py" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-py "><code class="language-py" data-lang="py"><span style="color:#9b9b9b;">import </span><span>refcursed
+</span><span style="color:#569cd6;">assert </span><span>refcursed.sort_refcount([</span><span style="color:#b5cea8;">1</span><span>, </span><span style="color:#b5cea8;">2</span><span>, </span><span style="color:#b5cea8;">3</span><span>]) == </span><span style="color:#569cd6;">... </span><span style="color:#608b4e;"># varies
+</span><span style="color:#569cd6;">assert </span><span>refcursed.compare_refcounts(</span><span style="color:#b5cea8;">1</span><span>, </span><span style="color:#b5cea8;">2</span><span>) == </span><span style="color:#569cd6;">... </span><span style="color:#608b4e;">#varies
+</span></code></pre>
+<p>See the <a href="https://esoterra.dev/projects/refcursed/#int-and-bool-interning">Integers</a> section to find out why these are subtly non-trivial.</p>
+<h1 id="considerations-caveats-and-curiosities">Considerations, Caveats, and Curiosities</h1>
+<p>Most of the characteristics of <code>sys.getrefcount</code> are intuitive and you might guess, but others you may not.</p>
+<h2 id="str-interning"><code>str</code> Interning</h2>
+<p>Strings in Python sometimes act as separate objects that don't <code>is</code> compare true and don't have the same refcount, but some are the same and do. The latter case is due to interning, where Python stores one <code>str</code> object for multiple (potentially independent) instances of the same string value.</p>
+<p>Interning sometimes happens automatically, like in all string literals, and can also be done manual, using <code>sys.intern</code>. Be aware of when interning is/isn't happening and how that may affect the behavior of refcounting.</p>
+<h2 id="int-and-bool-interning"><code>int</code> and <code>bool</code> Interning</h2>
+<p>Similarly to strings, integers and boolean values are also interned but following different rules. Any time an integer (within some size limit) is returned by an arithmetic operation, Python pulls the correct integer object from a table instead of creating a new one incrementing the count for that integer. Booleans work much the same way but are always interned because there are only two possible values.</p>
+<p>One fun quirk of this is that the integers returned by <code>sys.getrefcount</code> can be interned and increment the refcount for that integer. Under very specific circumstances this can change the outcome of a comparison.</p>
+<pre data-lang="py" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-py "><code class="language-py" data-lang="py"><span style="color:#608b4e;"># If B is equal to the integer that is the refcount of A
+</span><span style="color:#608b4e;"># and B is a small enough integer to be automatically interned
+</span><span style="color:#608b4e;"># and the refcount of B is one less than the refcount of A,
+</span><span style="color:#608b4e;"># then even though A had a larger refcount the act of observing them
+</span><span style="color:#608b4e;"># has made them equal and this condition will fail.
+</span><span style="color:#569cd6;">assert </span><span>sys.getrefcount(A) &gt; sys.getrefcount(B)
+</span></code></pre>
+<p>This may sound very precise and very unlikely, but it really isn't.
+It can easily occur whenever sorting or comparing small integer values by refcount.
+For robustness, all comparisons in the refcursed library either use <code>float(sys.getrefcount(...))</code> to store refcounts without modifying others or compensate for the case above.</p>
+
+</article>
+
+    </main>
+</body>
+
+</html>

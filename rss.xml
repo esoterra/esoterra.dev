@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title></title>
+      <link>https://esoterra.dev</link>
+      <description></description>
+      <generator>Zola</generator>
+      <language>en</language>
+      <atom:link href="https://esoterra.dev/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Sat, 02 Aug 2025 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Making Esoteric Beauty Accessible: Befunge in 2025</title>
+          <pubDate>Sat, 02 Aug 2025 00:00:00 +0000</pubDate>
+          <author>Robin Brown</author>
+          <link>https://esoterra.dev/talks/2025-fossy/</link>
+          <guid>https://esoterra.dev/talks/2025-fossy/</guid>
+          <description xml:base="https://esoterra.dev/talks/2025-fossy/">&lt;p&gt;An audio-visual exploration of Befunge.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>&#x27;Fixing&#x27; 12-Hour Time</title>
+          <pubDate>Mon, 06 Jan 2025 00:00:00 +0000</pubDate>
+          <author>Robin Brown</author>
+          <link>https://esoterra.dev/blog/fixing-12-hour-time/</link>
+          <guid>https://esoterra.dev/blog/fixing-12-hour-time/</guid>
+          <description xml:base="https://esoterra.dev/blog/fixing-12-hour-time/">&lt;h2 id=&quot;12-hour-time-is-confusing&quot;&gt;12-Hour Time is Confusing&lt;&#x2F;h2&gt;
+&lt;p&gt;When we teach children to read clocks and tell time, they&#x27;re often confused by the strange combination of rules we follow.
+Even some adults mix up whether midnight is in the a.m. or p.m. and how many hours are between two times that span noon.
+This confusing complexity isn&#x27;t intrinsic! It can be removed!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;12-hour-time-is-discontinuous&quot;&gt;12-Hour Time is Discontinuous&lt;&#x2F;h2&gt;
+&lt;p&gt;A sensible 12-hour time system would be continuous and linear within its 12-hour segments. Any times &lt;code&gt;(N):mm a.m.&lt;&#x2F;code&gt; and &lt;code&gt;(N+1):mm a.m.&lt;&#x2F;code&gt; should be 1 hour apart and any &lt;code&gt;(N):mm p.m.&lt;&#x2F;code&gt; and &lt;code&gt;(N+1):mm p.m.&lt;&#x2F;code&gt; should be too.
+Sadly, &lt;code&gt;12:30 p.m.&lt;&#x2F;code&gt; is actually 11 hours before &lt;code&gt;11:30 p.m.&lt;&#x2F;code&gt;.
+In my opinion, this is where a lot of the confusion about hours of the day and distances in time comes from.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;implied-24-hour-value&quot;&gt;Implied 24-Hour Value&lt;&#x2F;h2&gt;
+&lt;p&gt;One simple way to demonstrate how 12-hour time deviates from intuition is to imagine a simple hypothetical rule: the 24-hour time for a 12-hour time is equal to its 12-hour time if it is &lt;code&gt;a.m.&lt;&#x2F;code&gt; and equal to 12 hours later if it is &lt;code&gt;p.m.&lt;&#x2F;code&gt;. This rule isn&#x27;t how 12-hour time works, but plotting the values it gives us makes 12-hour time&#x27;s major issue obvious.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+&lt;svg viewbox=&quot;0 0 681.25 731.25&quot; width=&quot;400px&quot;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;75,656.25 75,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;350,656.25 350,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;375,656.25 375,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;650,656.25 650,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;50,631.25 650,631.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;50,356.25 650,356.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;50,331.25 650,331.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;50,56.25 650,56.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;50,31.25 650,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;50,656.25 650,56.25&quot;&#x2F;&gt;&lt;text x=&quot;25&quot; y=&quot;56.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;24&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;81.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;23&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;106.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;22&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;131.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;21&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;156.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;20&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;181.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;19&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;206.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;18&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;231.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;17&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;256.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;16&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;281.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;15&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;306.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;14&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;331.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;13&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;356.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;381.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;406.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;431.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;456.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;481.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;506.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;531.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;556.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;581.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;606.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;631.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;656.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;0&lt;&#x2F;text&gt;&lt;text x=&quot;50&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;75&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;100&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;125&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;150&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;175&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;200&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;225&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;250&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;275&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;300&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;325&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;350&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;375&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;400&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;425&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;450&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;475&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;500&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;525&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;550&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;575&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;600&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;625&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;650&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;2&quot; points=&quot;50,693.75 50,706.25 162.5,706.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;2&quot; points=&quot;212.5,706.25 325,706.25 325,693.75&quot;&#x2F;&gt;&lt;text x=&quot;187.5&quot; y=&quot;706.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;a.m.&lt;&#x2F;text&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;2&quot; points=&quot;350,693.75 350,706.25 462.5,706.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;2&quot; points=&quot;512.5,706.25 625,706.25 625,693.75&quot;&#x2F;&gt;&lt;text x=&quot;487.5&quot; y=&quot;706.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;p.m.&lt;&#x2F;text&gt;&lt;text x=&quot;650&quot; y=&quot;706.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;a.m.&lt;&#x2F;text&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#000&quot; stroke-width=&quot;4&quot; points=&quot;50,656.25 650,656.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#000&quot; stroke-width=&quot;4&quot; points=&quot;50,656.25 50,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; points=&quot;50,356.25 75,331.25&quot;&#x2F;&gt;&lt;circle cx=&quot;50&quot; cy=&quot;356.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;circle cx=&quot;75&quot; cy=&quot;331.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#FFFFFF&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; points=&quot;75,631.25 350,356.25&quot;&#x2F;&gt;&lt;circle cx=&quot;75&quot; cy=&quot;631.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;circle cx=&quot;350&quot; cy=&quot;356.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#FFFFFF&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; points=&quot;350,56.25 375,31.25&quot;&#x2F;&gt;&lt;circle cx=&quot;350&quot; cy=&quot;56.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;circle cx=&quot;375&quot; cy=&quot;31.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#FFFFFF&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; points=&quot;375,331.25 650,56.25&quot;&#x2F;&gt;&lt;circle cx=&quot;375&quot; cy=&quot;331.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;circle cx=&quot;650&quot; cy=&quot;56.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#FFFFFF&quot;&#x2F;&gt;&lt;&#x2F;svg&gt;
+&lt;figcaption&gt;A plot of how current &quot;discontinuous&quot; 12-hour time maps to implied time.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;This also presents an obvious way to create intra-segment intra-day continuity. Just make the hypothetical rule the actual one making noon &lt;code&gt;12:00 a.m.&lt;&#x2F;code&gt; and midnight &lt;code&gt;12:00 p.m.&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+&lt;svg viewbox=&quot;0 0 681.25 731.25&quot; width=&quot;400px&quot;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;75,656.25 75,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;650,656.25 650,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;50,631.25 650,631.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;50,56.25 650,56.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;50,31.25 650,31.25&quot;&#x2F;&gt;&lt;text x=&quot;25&quot; y=&quot;56.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;24&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;81.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;23&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;106.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;22&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;131.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;21&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;156.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;20&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;181.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;19&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;206.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;18&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;231.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;17&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;256.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;16&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;281.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;15&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;306.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;14&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;331.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;13&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;356.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;381.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;406.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;431.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;456.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;481.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;506.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;531.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;556.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;581.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;606.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;631.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;656.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;0&lt;&#x2F;text&gt;&lt;text x=&quot;50&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;75&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;100&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;125&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;150&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;175&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;200&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;225&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;250&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;275&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;300&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;325&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;350&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;375&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;400&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;425&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;450&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;475&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;500&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;525&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;550&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;575&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;600&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;625&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;650&quot; y=&quot;681.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;50&quot; y=&quot;706.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;p.m.&lt;&#x2F;text&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;2&quot; points=&quot;75,693.75 75,706.25 187.5,706.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;2&quot; points=&quot;237.5,706.25 350,706.25 350,693.75&quot;&#x2F;&gt;&lt;text x=&quot;212.5&quot; y=&quot;706.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;a.m.&lt;&#x2F;text&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;2&quot; points=&quot;375,693.75 375,706.25 487.5,706.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;2&quot; points=&quot;537.5,706.25 650,706.25 650,693.75&quot;&#x2F;&gt;&lt;text x=&quot;512.5&quot; y=&quot;706.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;p.m.&lt;&#x2F;text&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#000&quot; stroke-width=&quot;4&quot; points=&quot;50,656.25 650,656.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#000&quot; stroke-width=&quot;4&quot; points=&quot;50,656.25 50,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; points=&quot;50,56.25 75,31.25&quot;&#x2F;&gt;&lt;circle cx=&quot;50&quot; cy=&quot;56.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;circle cx=&quot;75&quot; cy=&quot;31.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#FFFFFF&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; points=&quot;75,631.25 650,56.25&quot;&#x2F;&gt;&lt;circle cx=&quot;75&quot; cy=&quot;631.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;circle cx=&quot;650&quot; cy=&quot;56.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;&#x2F;svg&gt;
+&lt;figcaption&gt;A intra-segment and intra-day continuous 12-hour time&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;Most people would leave it here having made times within the day continuous, but we can do &lt;em&gt;better&lt;&#x2F;em&gt;... we can make times continuous between days! (even if we shouldn&#x27;t)&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;segment-amplitude&quot;&gt;Segment-Amplitude&lt;&#x2F;h2&gt;
+&lt;p&gt;The approach for inter-segment inter-day continuity will look a little different and we&#x27;ll start by using a different visualization.
+Instead of focusing on the &quot;implied 24-hour value&quot; we&#x27;re going to focus on the amplitude of each time ignoring whether they are &lt;code&gt;a.m.&lt;&#x2F;code&gt; or &lt;code&gt;p.m.&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+&lt;svg viewbox=&quot;0 0 681.25 406.25&quot; width=&quot;400px&quot;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;75,356.25 75,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;375,356.25 375,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;650,356.25 650,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;50,331.25 650,331.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;50,56.25 650,56.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;50,31.25 650,31.25&quot;&#x2F;&gt;&lt;text x=&quot;25&quot; y=&quot;56.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;81.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;106.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;131.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;156.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;181.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;206.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;231.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;256.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;281.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;306.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;331.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;356.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;0&lt;&#x2F;text&gt;&lt;text x=&quot;50&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;75&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;100&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;125&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;150&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;175&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;200&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;225&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;250&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;275&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;300&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;325&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;350&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;375&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;400&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;425&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;450&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;475&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;500&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;525&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;550&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;575&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;600&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;625&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;650&quot; y=&quot;381.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#000&quot; stroke-width=&quot;4&quot; points=&quot;50,356.25 650,356.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#000&quot; stroke-width=&quot;4&quot; points=&quot;50,356.25 50,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; points=&quot;50,56.25 75,31.25&quot;&#x2F;&gt;&lt;circle cx=&quot;50&quot; cy=&quot;56.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;circle cx=&quot;75&quot; cy=&quot;31.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#FFFFFF&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; points=&quot;75,331.25 375,31.25&quot;&#x2F;&gt;&lt;circle cx=&quot;75&quot; cy=&quot;331.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;circle cx=&quot;375&quot; cy=&quot;31.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#FFFFFF&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; points=&quot;375,331.25 650,56.25&quot;&#x2F;&gt;&lt;circle cx=&quot;375&quot; cy=&quot;331.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;circle cx=&quot;650&quot; cy=&quot;56.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;&#x2F;svg&gt;
+&lt;figcaption&gt;Plotting time values ignoring a.m.&#x2F;p.m. in order&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;For the next step we&#x27;re going to take a hint from what &quot;a.m.&quot; and &quot;p.m.&quot; actually stand for:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ante meridiem&lt;&#x2F;strong&gt; which translates to &quot;before midday&quot;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;post meridiem&lt;&#x2F;strong&gt; which translates to &quot;after midday&quot;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;What&#x27;s strange about this is that &quot;11 a.m.&quot; isn&#x27;t really &quot;11 hours before midday&quot; though &quot;11 p.m.&quot; does mean &quot;11 hours after midday, but what if they did match?
+What if &lt;code&gt;HH:mm a.m.&lt;&#x2F;code&gt; meant &lt;code&gt;HH&lt;&#x2F;code&gt; hours and &lt;code&gt;mm&lt;&#x2F;code&gt; minutes before noon instead?&lt;&#x2F;p&gt;
+&lt;p&gt;Instead of hours increasing up till 12 and then resetting to 1, they would go up to 12 and down to zero and then back up and then back down.
+Intuitively this would mean that 12 hours after midday is equal to 12 hours before midday of the next!&lt;&#x2F;p&gt;
+&lt;figure&gt;
+&lt;svg viewbox=&quot;0 0 681.25 381.25&quot; width=&quot;400px&quot;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;350,331.25 350,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;650,331.25 650,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;50,31.25 650,31.25&quot;&#x2F;&gt;&lt;text x=&quot;25&quot; y=&quot;31.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;56.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;81.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;106.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;131.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;156.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;181.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;206.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;231.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;256.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;281.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;306.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;331.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;0&lt;&#x2F;text&gt;&lt;text x=&quot;50&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;50&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;75&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;100&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;125&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;150&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;175&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;200&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;225&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;250&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;275&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;300&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;325&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;350&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;0&lt;&#x2F;text&gt;&lt;text x=&quot;375&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;400&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;425&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;450&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;475&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;500&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;525&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;550&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;575&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;600&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;625&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;650&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#000&quot; stroke-width=&quot;4&quot; points=&quot;50,331.25 650,331.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#000&quot; stroke-width=&quot;4&quot; points=&quot;50,331.25 50,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; points=&quot;50,31.25 350,331.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; points=&quot;350,331.25 650,31.25&quot;&#x2F;&gt;&lt;circle cx=&quot;50&quot; cy=&quot;31.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;circle cx=&quot;350&quot; cy=&quot;331.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;circle cx=&quot;650&quot; cy=&quot;31.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;&#x2F;svg&gt;
+&lt;figcaption&gt;Continuous 12-hour time&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;By reversing the order of time in the a.m., we&#x27;ve finally reached a truly inter-segment inter-day continuous 12-hour time, which I propose we call &lt;strong&gt;Continuous 12-Hour Time&lt;&#x2F;strong&gt; a.k.a. &lt;strong&gt;C12 Time&lt;&#x2F;strong&gt; and adopt immediately. Its inter-day continuity can be seen in the following figure by repeating the plot across multiple days.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+&lt;svg viewbox=&quot;0 0 1281.25 381.25&quot; width=&quot;400px&quot;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;350,331.25 350,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;650,331.25 650,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;950,331.25 950,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;1250,331.25 1250,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#6D606F&quot; stroke-dasharray=&quot;5,5&quot; stroke-width=&quot;2&quot; points=&quot;50,31.25 1250,31.25&quot;&#x2F;&gt;&lt;text x=&quot;25&quot; y=&quot;31.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;56.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;81.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;106.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;131.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;156.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;181.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;206.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;231.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;256.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;281.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;306.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;25&quot; y=&quot;331.25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot;&gt;0&lt;&#x2F;text&gt;&lt;text x=&quot;50&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;50&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;75&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;100&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;125&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;150&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;175&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;200&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;225&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;250&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;275&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;300&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;325&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;350&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;0&lt;&#x2F;text&gt;&lt;text x=&quot;375&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;400&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;425&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;450&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;475&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;500&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;525&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;550&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;575&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;600&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;625&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;650&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;650&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;text x=&quot;675&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;700&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;725&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;750&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;775&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;800&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;825&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;850&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;875&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;900&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;925&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;950&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;0&lt;&#x2F;text&gt;&lt;text x=&quot;975&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;1&lt;&#x2F;text&gt;&lt;text x=&quot;1000&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;2&lt;&#x2F;text&gt;&lt;text x=&quot;1025&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;3&lt;&#x2F;text&gt;&lt;text x=&quot;1050&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;4&lt;&#x2F;text&gt;&lt;text x=&quot;1075&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;5&lt;&#x2F;text&gt;&lt;text x=&quot;1100&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;6&lt;&#x2F;text&gt;&lt;text x=&quot;1125&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;7&lt;&#x2F;text&gt;&lt;text x=&quot;1150&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;8&lt;&#x2F;text&gt;&lt;text x=&quot;1175&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;9&lt;&#x2F;text&gt;&lt;text x=&quot;1200&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;10&lt;&#x2F;text&gt;&lt;text x=&quot;1225&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;11&lt;&#x2F;text&gt;&lt;text x=&quot;1250&quot; y=&quot;356.25&quot; text-anchor=&quot;middle&quot;&gt;12&lt;&#x2F;text&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#000&quot; stroke-width=&quot;4&quot; points=&quot;50,331.25 1250,331.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#000&quot; stroke-width=&quot;4&quot; points=&quot;50,331.25 50,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; points=&quot;50,31.25 350,331.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; points=&quot;350,331.25 650,31.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; points=&quot;650,31.25 950,331.25&quot;&#x2F;&gt;&lt;polyline fill=&quot;none&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; points=&quot;950,331.25 1250,31.25&quot;&#x2F;&gt;&lt;circle cx=&quot;50&quot; cy=&quot;31.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;circle cx=&quot;350&quot; cy=&quot;331.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;circle cx=&quot;650&quot; cy=&quot;31.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;circle cx=&quot;950&quot; cy=&quot;331.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;circle cx=&quot;1250&quot; cy=&quot;31.25&quot; r=&quot;6.25&quot; stroke=&quot;#BA5624&quot; stroke-width=&quot;4&quot; fill=&quot;#BA5624&quot;&#x2F;&gt;&lt;&#x2F;svg&gt;
+&lt;figcaption&gt;Continuous 12-hour time across 2 days&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;In addition to continuity, it&#x27;s also much easier to tell how long durations of time ranges that cross noon, which are very common, are: you can simply add the a.m. start time to the p.m. end time!&lt;&#x2F;p&gt;
+&lt;p&gt;Notably, this innovation can&#x27;t be applied to 24-hour time demonstrating why 24-hour time shouldn&#x27;t be taken seriously.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;clocks&quot;&gt;Clocks&lt;&#x2F;h2&gt;
+&lt;p&gt;This will obviously have both foreseeable and unforeseeable consequences and implications for clocks and the keeping of time.
+As we begin to implement it, I&#x27;m sure we&#x27;ll figure out the details.&lt;&#x2F;p&gt;
+&lt;p&gt;At some point I hope to build a physical analogue clock demonstrating it, which will conveniently only require a change in the motion of its hands but not its structure, which is a notable feature of my proposal.&lt;&#x2F;p&gt;
+&lt;p&gt;For now, please accept this digital clock showing the current time in the proposed system:&lt;&#x2F;p&gt;
+&lt;figure&gt;
+&lt;span class=&quot;c12-clock&quot;&gt;12:00 a.m.&lt;&#x2F;span&gt;
+&lt;figcaption&gt;A &lt;strong&gt;C12&lt;&#x2F;strong&gt; digital clock&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;script src=&quot;&#x2F;c12&#x2F;c12.js&quot;&gt;&lt;&#x2F;script&gt;
+&lt;h2 id=&quot;code&quot;&gt;Code&lt;&#x2F;h2&gt;
+&lt;p&gt;The code for this blog post is available online and licensed under the Apache 2.0 license.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;c12&#x2F;c12.js&quot;&gt;&lt;code&gt;c12.js&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; - a simple script that turns any element with class &lt;code&gt;c12-clock&lt;&#x2F;code&gt; into a live &lt;strong&gt;C12&lt;&#x2F;strong&gt; clock.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;c12&#x2F;gencharts.py&quot;&gt;&lt;code&gt;gencharts.py&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; - code for generating all of the SVG charts in this blog post.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</description>
+      </item>
+      <item>
+          <title>A More Perfect Derive</title>
+          <pubDate>Fri, 01 Nov 2024 00:00:00 +0000</pubDate>
+          <author>Robin Brown</author>
+          <link>https://esoterra.dev/blog/a-more-perfect-derive/</link>
+          <guid>https://esoterra.dev/blog/a-more-perfect-derive/</guid>
+          <description xml:base="https://esoterra.dev/blog/a-more-perfect-derive/">&lt;h2 id=&quot;what-is-derive&quot;&gt;What is Derive?&lt;&#x2F;h2&gt;
+&lt;p&gt;In some languages, users need to write (or use tools to generate) boilerplate implementations for common functionality (like debug printing, comparison, hashing) over and over again  on each type they define.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;py&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-py &quot;&gt;&lt;code class=&quot;language-py&quot; data-lang=&quot;py&quot;&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span&gt;Point():
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;def &lt;&#x2F;span&gt;&lt;span&gt;__init__(self, x: float, y: float):
+&lt;&#x2F;span&gt;&lt;span&gt;        self.x = x
+&lt;&#x2F;span&gt;&lt;span&gt;        self.y = y
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;def &lt;&#x2F;span&gt;&lt;span&gt;__repr__(self) -&amp;gt; str:
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;return f&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d69d85;&quot;&gt;&amp;quot;Point(x=&lt;&#x2F;span&gt;&lt;span&gt;{self.x}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d69d85;&quot;&gt;, y=&lt;&#x2F;span&gt;&lt;span&gt;{self.y}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d69d85;&quot;&gt;)&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Rust has an awesome feature called &quot;derive&quot; and using it we can write &lt;code&gt;#[derive(Debug, PartialEq, Eq, Hash)]&lt;&#x2F;code&gt; and the implementations will be generated at compile time. This improves productivity and removes an easy place for little mistakes to be made.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span&gt;#[derive(Debug)]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;struct &lt;&#x2F;span&gt;&lt;span&gt;Point {
+&lt;&#x2F;span&gt;&lt;span&gt;    x: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;f32&lt;&#x2F;span&gt;&lt;span&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    y: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;f32&lt;&#x2F;span&gt;&lt;span&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;how-should-derive-handle-generics&quot;&gt;How Should Derive Handle Generics?&lt;&#x2F;h2&gt;
+&lt;p&gt;When we derive a trait for a type that has generic parameters, it may not be possible to generate an implementation without putting bounds on those parameters.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, in the following &lt;code&gt;Pair&lt;&#x2F;code&gt; type, it is only possible to &lt;code&gt;Debug&lt;&#x2F;code&gt; print &lt;code&gt;Pair&amp;lt;X&amp;gt;&lt;&#x2F;code&gt; if &lt;code&gt;X&lt;&#x2F;code&gt; can be &lt;code&gt;Debug&lt;&#x2F;code&gt; printed.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;struct &lt;&#x2F;span&gt;&lt;span&gt;Pair&amp;lt;X&amp;gt; {
+&lt;&#x2F;span&gt;&lt;span&gt;    left: X,
+&lt;&#x2F;span&gt;&lt;span&gt;    right: X,
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This can be expressed by the following impl bound.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;impl&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;X&amp;gt; std::fmt::Debug &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;Pair&amp;lt;X&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;where
+&lt;&#x2F;span&gt;&lt;span&gt;    X: std::fmt::Debug
+&lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;...
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;what-about-more-complex-generics&quot;&gt;What About More Complex Generics?&lt;&#x2F;h2&gt;
+&lt;p&gt;Some types use a generic type parameter without actually structurally including a value of that type directly. For example, the following type &lt;code&gt;List&amp;lt;T&amp;gt;&lt;&#x2F;code&gt; doesn&#x27;t include a a &lt;code&gt;T&lt;&#x2F;code&gt; directly.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;struct &lt;&#x2F;span&gt;&lt;span&gt;List&amp;lt;T&amp;gt; {
+&lt;&#x2F;span&gt;&lt;span&gt;    data: Rc&amp;lt;T&amp;gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    next: Option&amp;lt;Rc&amp;lt;List&amp;lt;T&amp;gt;&amp;gt;&amp;gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For some traits like &lt;code&gt;Debug&lt;&#x2F;code&gt;, a wrapper like &lt;code&gt;Rc&lt;&#x2F;code&gt; around a &lt;code&gt;T&lt;&#x2F;code&gt; will only implement a trait if &lt;code&gt;T&lt;&#x2F;code&gt; does. For other traits like &lt;code&gt;Clone&lt;&#x2F;code&gt;, this isn&#x27;t necessarily true because an &lt;code&gt;Rc&amp;lt;T&amp;gt;&lt;&#x2F;code&gt; is &lt;code&gt;Clone&lt;&#x2F;code&gt; even if &lt;code&gt;T&lt;&#x2F;code&gt; isn&#x27;t.&lt;&#x2F;p&gt;
+&lt;p&gt;That means that we don&#x27;t actually need to bound our &lt;code&gt;Clone&lt;&#x2F;code&gt; implementation for &lt;code&gt;List&amp;lt;T&amp;gt;&lt;&#x2F;code&gt; with &lt;code&gt;T: Clone&lt;&#x2F;code&gt;. It could look like the following:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;impl&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;T&amp;gt; Clone &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;List&amp;lt;T&amp;gt; {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span&gt;clone(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span&gt;self) {
+&lt;&#x2F;span&gt;&lt;span&gt;        List {
+&lt;&#x2F;span&gt;&lt;span&gt;            value: self.value.clone(),
+&lt;&#x2F;span&gt;&lt;span&gt;            next: self.next.clone(),
+&lt;&#x2F;span&gt;&lt;span&gt;        }
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;However, with the current derive implementation it still actually has a bound like in the &lt;code&gt;Pair&lt;&#x2F;code&gt;-&lt;code&gt;Debug&lt;&#x2F;code&gt; example and looks like the following.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;impl&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;T&amp;gt; Clone &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;List&amp;lt;T&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;where
+&lt;&#x2F;span&gt;&lt;span&gt;    T: Clone
+&lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span&gt;clone(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span&gt;self) { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#608b4e;&quot;&gt;&#x2F;* as before *&#x2F; &lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;That&#x27;s because the Rust derive mechanism makes a conservative assumption: we shouldn&#x27;t leak information about the fields of a type into the bounds of the derived implementation. If the internals of &lt;code&gt;List&amp;lt;T&amp;gt;&lt;&#x2F;code&gt; change, it may not be possible to derive &lt;code&gt;Clone&lt;&#x2F;code&gt; without bounds in the future and that could accidentally introduce a breaking change.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-is-perfect-derive&quot;&gt;What is Perfect Derive?&lt;&#x2F;h2&gt;
+&lt;p&gt;The name &quot;Perfect Derive&quot; refers to a derive algorithm which generates implementations without any unnecessary bounds. It has been discussed by the Rust lang team (&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;lang-team&#x2F;issues&#x2F;152&quot;&gt;GitHub issue&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;hackmd.io&#x2F;M_Wuev3pSwG_p4RfLGgDYw&quot;&gt;Notes&lt;&#x2F;a&gt;) and by the blog &lt;a href=&quot;https:&#x2F;&#x2F;smallcultfollowing.com&#x2F;babysteps&#x2F;&#x2F;blog&#x2F;2022&#x2F;04&#x2F;12&#x2F;implied-bounds-and-perfect-derive&#x2F;&quot;&gt;smallcultfollowing.com&lt;&#x2F;a&gt;. The examples in the previous section are just a reiteration of what&#x27;s covered by these sources.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-not-just-turn-on-perfect-derive&quot;&gt;Why not just turn on Perfect Derive?&lt;&#x2F;h2&gt;
+&lt;p&gt;If in future editions of Rust the derive macro becomes &quot;perfect&quot;, then users switching to the new edition may have the bounds on their derived trait implementations change in subtle ways which cause breakages.&lt;&#x2F;p&gt;
+&lt;p&gt;Some of these users won&#x27;t even be aware of these subtleties or the change and will likely be very confused. Others may be aware of the update, but not want to change the behavior of their crate or use the new perfect derive anyway because it makes it easier to cause breaking changes.&lt;&#x2F;p&gt;
+&lt;p&gt;If you want to learn more about the challenges to &quot;just doing it&quot;, I highly recommend the &lt;a href=&quot;https:&#x2F;&#x2F;smallcultfollowing.com&#x2F;babysteps&#x2F;&#x2F;blog&#x2F;2022&#x2F;04&#x2F;12&#x2F;implied-bounds-and-perfect-derive&#x2F;&quot;&gt;smallcultfollowing.com&lt;&#x2F;a&gt; post.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;design-solutions&quot;&gt;Design Solutions&lt;&#x2F;h2&gt;
+&lt;p&gt;I think perfect derive should be opt-in in a clear way, so that we don&#x27;t confuse users and they make an intentional choice between leaking implementation details in their API for more precise bounds or using the more conservative current approach.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;separate-macro&quot;&gt;Separate Macro&lt;&#x2F;h3&gt;
+&lt;p&gt;One option is for users to choose between two attribute macros: one that performs perfect derive and one that performs classic derive. This is already possible today using the &lt;a href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;crates&#x2F;perfect-derive&quot;&gt;&lt;code&gt;perfect-derive&lt;&#x2F;code&gt; crate&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span&gt;#[perfect_derive(Clone)]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;struct &lt;&#x2F;span&gt;&lt;span&gt;List&amp;lt;T&amp;gt; { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#608b4e;&quot;&gt;&#x2F;* as before *&#x2F; &lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;However, I don&#x27;t think it&#x27;s obvious to users what a name like this means, when they should use it, and why derive doesn&#x27;t always work this way. So I&#x27;m not sure if this is the right option.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;type-attributes&quot;&gt;Type Attributes&lt;&#x2F;h3&gt;
+&lt;p&gt;Another approach would be to let the user indicate when defining a type what types they want their derived implementations to be bound on. If this attribute is not provided, the generic parameters would be used, which is the same as the current behavior.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span&gt;#[derive(Clone)]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;struct &lt;&#x2F;span&gt;&lt;span&gt;List&amp;lt;T&amp;gt; { ... }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#608b4e;&quot;&gt;&#x2F;&#x2F; or equivalently
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;#[derive(Clone)]
+&lt;&#x2F;span&gt;&lt;span&gt;#[bound_derive(T)]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;struct &lt;&#x2F;span&gt;&lt;span&gt;List&amp;lt;T&amp;gt; { ... }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;By adding this attribute, users can get whatever bounds they want including what perfect derive would have chosen.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span&gt;#[derive(Clone)]
+&lt;&#x2F;span&gt;&lt;span&gt;#[bound_derive(Rc&amp;lt;T&amp;gt;)]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;struct &lt;&#x2F;span&gt;&lt;span&gt;List&amp;lt;T&amp;gt; { ... }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is very explicit and encourages users to think explicitly about what bounds they want on their trait implementations.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;field-attributes&quot;&gt;Field Attributes&lt;&#x2F;h3&gt;
+&lt;p&gt;Another idea I had is to put an attribute on the fields of the type which indicates that the bounds may be narrowed using information about that field&#x27;s type.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span&gt;#[derive(Clone)]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;struct &lt;&#x2F;span&gt;&lt;span&gt;List&amp;lt;T&amp;gt; {
+&lt;&#x2F;span&gt;&lt;span&gt;    #[bound_derive]
+&lt;&#x2F;span&gt;&lt;span&gt;    data: Rc&amp;lt;T&amp;gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    #[bound_derive]
+&lt;&#x2F;span&gt;&lt;span&gt;    next: Option&amp;lt;Rc&amp;lt;List&amp;lt;T&amp;gt;&amp;gt;&amp;gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this model, both adding and removing the &lt;code&gt;bound_derive&lt;&#x2F;code&gt; attribute and changing the type of a field labeled &lt;code&gt;bound_derive&lt;&#x2F;code&gt; are potentially breaking changes, but changing the type of any other field is not. This seems like a reasonable behavior and parallels the semantics of &lt;code&gt;pub&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;If multiple fields use the same type parameter &lt;code&gt;T&lt;&#x2F;code&gt; but only some are marked &lt;code&gt;bound_derive&lt;&#x2F;code&gt;, then either pessimistic bounds need to be emitted which still bound on &lt;code&gt;T&lt;&#x2F;code&gt; or it should be rejected as ambiguous.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;struct &lt;&#x2F;span&gt;&lt;span&gt;List&amp;lt;T&amp;gt; {
+&lt;&#x2F;span&gt;&lt;span&gt;    data: Rc&amp;lt;T&amp;gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    #[bound_derive]
+&lt;&#x2F;span&gt;&lt;span&gt;    next: Option&amp;lt;Rc&amp;lt;List&amp;lt;T&amp;gt;&amp;gt;&amp;gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap Up&lt;&#x2F;h2&gt;
+&lt;p&gt;Out of these options, I think field attributes are probably the most elegant. Giving users the tools to communicate when they want a field&#x27;s type to become a public part of the API of their derived type by explicitly saying &quot;hey you can use this&quot; and in a way that mirrors &lt;code&gt;pub&lt;&#x2F;code&gt; feels like a great solution.&lt;&#x2F;p&gt;
+&lt;p&gt;I don&#x27;t currently have the time to implement this proposal or write an RFC, but hopefully this will bring some attention to perfect derive and ways to solve it.&lt;&#x2F;p&gt;
+&lt;p&gt;Cheers,&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;-Robin&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>WebAssembly Components: The Modular Polyglot Ecosystem We Need</title>
+          <pubDate>Fri, 10 May 2024 00:00:00 +0000</pubDate>
+          <author>Robin Brown</author>
+          <link>https://esoterra.dev/talks/2024-ucsc-lsd-seminar/</link>
+          <guid>https://esoterra.dev/talks/2024-ucsc-lsd-seminar/</guid>
+          <description xml:base="https://esoterra.dev/talks/2024-ucsc-lsd-seminar/">&lt;p&gt;I spoke to a seminar about WebAssembly, the Component Model, and why it&#x27;s a very promising ecosystem!&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Claw and Component-Native Languages &#x2F; Toolchains</title>
+          <pubDate>Fri, 15 Mar 2024 00:00:00 +0000</pubDate>
+          <author>Robin Brown</author>
+          <link>https://esoterra.dev/talks/2024-wasm-io/</link>
+          <guid>https://esoterra.dev/talks/2024-wasm-io/</guid>
+          <description xml:base="https://esoterra.dev/talks/2024-wasm-io/">&lt;p&gt;I announced, presented, and demonstrated the Claw programming language and talked about
+why we might consider making our toolchains component-native!&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Wasm Components for Every Language</title>
+          <pubDate>Wed, 06 Sep 2023 00:00:00 +0000</pubDate>
+          <author>Robin Brown</author>
+          <link>https://esoterra.dev/talks/2023-wasmcon/</link>
+          <guid>https://esoterra.dev/talks/2023-wasmcon/</guid>
+          <description xml:base="https://esoterra.dev/talks/2023-wasmcon/">&lt;p&gt;I presented on the state of WebAssembly (Wasm) component model tooling in various languages,
+explained how componentization works, and gave a demo of polyglot composition!&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Package Transparency for WebAssembly Registries</title>
+          <pubDate>Wed, 01 Feb 2023 00:00:00 +0000</pubDate>
+          <author>Robin Brown</author>
+          <link>https://esoterra.dev/talks/2023-cloudnativesecuritycon/</link>
+          <guid>https://esoterra.dev/talks/2023-cloudnativesecuritycon/</guid>
+          <description xml:base="https://esoterra.dev/talks/2023-cloudnativesecuritycon/">&lt;p&gt;I presented on the topic of Package Transparency which incorporates ideas from Certificate Transparency
+into package management and talked about the Warg protocol which is an implementation of those ideas.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Template Compiler (DRAFT)</title>
+          <pubDate>Sun, 08 Jan 2023 00:00:00 +0000</pubDate>
+          <author>Robin Brown</author>
+          <link>https://esoterra.dev/blog/template-compiler/</link>
+          <guid>https://esoterra.dev/blog/template-compiler/</guid>
+          <description xml:base="https://esoterra.dev/blog/template-compiler/">&lt;p&gt;WebAssembly (Wasm) components are a compact, portable, and secure unit of code.
+They&#x27;re a &lt;q&gt;compile target&lt;&#x2F;q&gt; with a binary format, not a source code language.
+So you won&#x27;t write them by hand, you&#x27;ll have tools to generate them for you.&lt;&#x2F;p&gt;
+&lt;p&gt;
+In addition to languages like Rust, C++, JavaScript, and Python that are &quot;General Purpose&quot;,
+certain Domain-Specific languages may be good candidates for &quot;componentizing&quot;.
+&lt;&#x2F;p&gt;
+&lt;p&gt;For example,&lt;&#x2F;p&gt;
+&lt;ul&gt;
+    &lt;li&gt;
+        &lt;strong&gt;parser&#x2F;grammar languages&lt;&#x2F;strong&gt; (e.g. lex, yacc)
+        can be compiled to components with a single parse function that
+        takes in text and returns an AST and
+    &lt;&#x2F;li&gt;
+    &lt;li&gt;
+        &lt;strong&gt;templating languages&lt;&#x2F;strong&gt; (e.g. handlebars, pug)
+        can be compiled into components with a single function that
+        takes in parameters and returns the filled in template.
+    &lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;template-to-component-compiler&quot;&gt;Template-to-Component Compiler&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s focus on the second example and make a compiler that converts templates into components!&lt;&#x2F;p&gt;
+&lt;p&gt;A Wasm component has a type that&#x27;s defined by a &quot;world&quot; in the
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;WebAssembly&#x2F;component-model&#x2F;blob&#x2F;main&#x2F;design&#x2F;mvp&#x2F;WIT.md&quot;&gt;WIT interface-definition language&lt;&#x2F;a&gt;
+which identifies all the things the component imports and exports.
+For simple templates, we don&#x27;t need any imports and we have exactly one export which is our templating function.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span&gt;world my-template {
+&lt;&#x2F;span&gt;&lt;span&gt;    record params {
+&lt;&#x2F;span&gt;&lt;span&gt;        title: string,
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;...
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;export &lt;&#x2F;span&gt;&lt;span&gt;apply: func(param: params) -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span&gt;string
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The exact fields and types that the parameters record has will depend on what our template
+uses and we can infer that directly from the template file.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;canonical-abi&quot;&gt;Canonical ABI&lt;&#x2F;h2&gt;
+&lt;p&gt;To implement this high-level interface, we need to use the canonical ABI
+which defines the way that high-level component types can be
+passed into and returned from components using integer values
+and the Wasm linear memory.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img
+        src=&quot;&#x2F;tc-1&#x2F;canon-abi.svg&quot;
+        width=&quot;400px&quot;
+        height=&quot;115px&quot;
+        alt=&quot;The canonical ABI connects the component model and core wasm&quot;
+    &#x2F;&gt;
+&lt;&#x2F;figure&gt;
+&lt;br&gt;
+&lt;h3 id=&quot;lifting-and-lowering&quot;&gt;Lifting and Lowering&lt;&#x2F;h3&gt;
+&lt;p&gt;In the Canonical ABI, the Component Model is &lt;q&gt;higher&lt;&#x2F;q&gt; (as in higher-level)
+than Core Wasm and Modules.
+So, when things need to be converted upwards from Core Wasm to the Component Model, it&#x27;s called &lt;q&gt;lifting&lt;&#x2F;q&gt;.
+Conversely, when things need to be converted downards from the Component Model to Core Wasm, it&#x27;s called &lt;q&gt;lowering&lt;&#x2F;q&gt;.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img
+        src=&quot;&#x2F;tc-1&#x2F;lift-lower.svg&quot;
+        width=&quot;550px&quot;
+        height=&quot;350px&quot;
+        alt=&quot;Lifting types from Core Wasm to the Component Model and lowering them from Component Model to Core Wasm&quot;
+    &#x2F;&gt;
+&lt;&#x2F;figure&gt;
+&lt;br&gt;
+&lt;h3 id=&quot;imported-and-exported-functions&quot;&gt;Imported and Exported Functions&lt;&#x2F;h3&gt;
+&lt;p&gt;When talking about functions, the direction of lifting and lowering corresponds
+to whether the function is an export or import.&lt;&#x2F;p&gt;
+&lt;p&gt;Exported functions are defined in the inner module and lifted to the component which re-exports it.
+Imported functions are defined by a component import and lowered to the module import.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img
+        src=&quot;&#x2F;tc-1&#x2F;function-export-import.svg&quot;
+        width=&quot;700px&quot;
+        height=&quot;330px&quot;
+        alt=&quot;Diagram showing module exports being lifted to component exports, and component imports being lowed to module imports&quot;
+    &#x2F;&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;For exports and imports, the arguments go in the direction from caller to callee
+and the returns go from callee to caller.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img
+        src=&quot;&#x2F;tc-1&#x2F;argument-return.svg&quot;
+        width=&quot;700px&quot;
+        height=&quot;250px&quot;
+        alt=&quot;Diagram showing export arguments being lowered and return being lifted, with import arguments being raised and return being lowered&quot;
+    &#x2F;&gt;
+&lt;&#x2F;figure&gt;
+&lt;h3 id=&quot;values&quot;&gt;Values&lt;&#x2F;h3&gt;
+&lt;p&gt;Values in the canonical ABI are either passed directly in arguments&#x2F;returns
+as a sequence of core Wasm values (e.g. i32, f32) or indirectly using memory.
+The default is for values to be passed directly and memory indirection is used
+when the value is too large to be passed directly or the value is part of a list.&lt;&#x2F;p&gt;
+&lt;aside&gt;
+    &lt;strong&gt;Note:&lt;&#x2F;strong&gt; you can find more information in the 
+    &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;WebAssembly&#x2F;component-model&#x2F;blob&#x2F;main&#x2F;design&#x2F;mvp&#x2F;canonical-abi&#x2F;definitions.py&quot;&gt;
+        canonical-abi&#x2F;definitions.py
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;aside&gt;
+&lt;p&gt;The canonical ABI allows components to select which string encoding to lift&#x2F;lower strings from&#x2F;into
+and we will be choosing UTF-8 (the other options are UTF-16 and Latin 1 + UTF-16).
+Strings in the canonical ABI are represented as an offset and length which has the direct
+representation (i32, i32) and a memory representation of two 4-byte little endian integers.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img
+        src=&quot;&#x2F;tc-1&#x2F;string-memory.svg&quot;
+        width=&quot;700px&quot;
+        height=&quot;250px&quot;
+        alt=&quot;Diagram showing string memory being layed out with pointer and length together pointing at the text data&quot;
+    &#x2F;&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;Records are represented directly by concatenating the direct representation of all their fields in order
+and are represented in memory by aligning and concatenating the memory representation of each field in order.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;template-abi&quot;&gt;Template ABI&lt;&#x2F;h3&gt;
+&lt;p&gt;The generated template function is exported, which means it will be defined in the module
+then lifted and rexported in the outer component.&lt;&#x2F;p&gt;
+&lt;p&gt;It has a single record argument, which is lowered into the template,
+and it has a single string result, which is lifted back up to the caller.
+Depending on the number of string parameters the parameter record will either
+be passed directly or in memory.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;allocators&quot;&gt;Allocators&lt;&#x2F;h2&gt;
+&lt;p&gt;In order to use the canonical ABI with arguments spilled to memory
+(which can happen depending on the number of parameters),
+we have to provide an allocator for the host to use for allocating
+the spilled args.&lt;&#x2F;p&gt;
+&lt;p&gt;There are many kinds of allocators but because we&#x27;re only ever using
+it to allocate arguments which are then all freed together we can
+use one of the simplest allocators called a bump allocator.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;generating-the-module&quot;&gt;Generating the Module&lt;&#x2F;h2&gt;
+&lt;p&gt;To return a string, we just need to return the integer index in memory of the (index, length) pair.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Confidential Consensus</title>
+          <pubDate>Tue, 06 Dec 2022 00:00:00 +0000</pubDate>
+          <author>Robin Brown</author>
+          <link>https://esoterra.dev/blog/confidential-consensus/</link>
+          <guid>https://esoterra.dev/blog/confidential-consensus/</guid>
+          <description xml:base="https://esoterra.dev/blog/confidential-consensus/">&lt;p&gt;Currently, the &lt;a href=&quot;https:&#x2F;&#x2F;confidentialcomputing.io&#x2F;&quot;&gt;Confidential Computing&lt;&#x2F;a&gt; community is focused on use cases with very high security requirements,
+like the government and military, where applications must be protected from the Cloud Service Provider or the host machine in general.
+These scenarios involve a traditional client&#x2F;server environment where the server just needs to be a bit more secure.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img
+        src=&quot;&#x2F;cc&#x2F;figure-0.svg&quot;
+        width=&quot;450px&quot;
+        height=&quot;300px&quot;
+        alt=&quot;Diagram showing a cloud service provider host containing a security critical service guest&quot;
+    &#x2F;&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;Confidential Computing can be used for much more than that though.
+As currently envisioned, &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Trusted_execution_environment&quot;&gt;Trusted Execution Environments&lt;&#x2F;a&gt; (TEEs)
+provided by Confidential Computing systems offer an exciting trade off built on specialized hardware encryption features.
+If you trust the hardware provider, you can run code on data that even the host cannot see or interfere with.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img
+        src=&quot;&#x2F;cc&#x2F;figure-1.svg&quot;
+        width=&quot;800px&quot;
+        height=&quot;250px&quot;
+        alt=&quot;Diagram showing how a guest in a TEE can be attacked while one not in one can be.&quot;
+    &#x2F;&gt;
+    &lt;figcaption&gt;If you trust the TEE features, you don&#x27;t have to trust the host&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;This has the potential to enable a new class of federated systems where
+the host of a given instance has well-defined limits to the data they can view and the actions they can perform.
+If the clients can verify that the instance is running in a TEE and is running open source code they have audited,
+they can know what the host can and can&#x27;t do with their data.
+This could be especially valuable in social media &amp;amp; messaging applications where users want to know that their privacy is being protected.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img
+        src=&quot;&#x2F;cc&#x2F;figure-2.svg&quot;
+        width=&quot;450px&quot;
+        height=&quot;450px&quot;
+        alt=&quot;Diagram showing two users talking to a service instance within a TEE as a way to talk to each other.&quot;
+    &#x2F;&gt;
+    &lt;figcaption&gt;Users can interact through a federated instance without trusting the operator&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;In a fully distributed system, we can achieve &lt;q&gt;Confidential Consensus&lt;&#x2F;q&gt;
+where each node runs in a TEE and acts as a replicated state machine processing encrypted events so that some of the system&#x27;s state remains private.
+Such systems will need a way to securely bootstrap so that the initial node(s) are known to be in TEEs
+and a way to ensure that any new nodes added to the system are also TEEs.
+This approach could offer a more dynamic and redundant version of a federated system where groups of users form networks
+representing a given &lt;q&gt;instance&lt;&#x2F;q&gt; or the ability to create a more globally distributed system.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img
+        src=&quot;&#x2F;cc&#x2F;figure-3.svg&quot;
+        width=&quot;800px&quot;
+        height=&quot;570px&quot;
+        alt=&quot;Diagram showing three TEEs each running a node and users talking to various nodes.&quot;
+    &#x2F;&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;To pull this off, Confidential Computing systems will need to be flexible enough that they can run on diverse hardware.
+To this end frameworks like &lt;a href=&quot;https:&#x2F;&#x2F;enarx.dev&#x2F;&quot;&gt;Enarx&lt;&#x2F;a&gt; that abstract individual hardware security features
+and enable cross-platform usage will be crucial.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>SIG-Registries and Standardizing Package Management in WebAssembly</title>
+          <pubDate>Mon, 24 Oct 2022 00:00:00 +0000</pubDate>
+          <author>Robin Brown</author>
+          <link>https://esoterra.dev/talks/2022-cloud-native-wasm-day-na/</link>
+          <guid>https://esoterra.dev/talks/2022-cloud-native-wasm-day-na/</guid>
+          <description xml:base="https://esoterra.dev/talks/2022-cloud-native-wasm-day-na/">&lt;p&gt;We introduced the new (at the time) SIG-Registries group in the Bytecode Alliance
+(now renamed and re-scoped to SIG-Packaging) and talked about the work that&#x27;s been going on there!&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Embeddable WebAssembly Parsers</title>
+          <pubDate>Mon, 07 Mar 2022 00:00:00 +0000</pubDate>
+          <author>Robin Brown</author>
+          <link>https://esoterra.dev/blog/embeddable-webassembly-parsers/</link>
+          <guid>https://esoterra.dev/blog/embeddable-webassembly-parsers/</guid>
+          <description xml:base="https://esoterra.dev/blog/embeddable-webassembly-parsers/">&lt;p&gt;Developer tooling has grown by leaps and bounds.
+Popular languages have strong support in multiple editors, linters, formatters, code review tools, and more.
+Even so, tools that support a wide variety of programming languages are hard to write and maintain.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;webassembly.org&#x2F;&quot;&gt;WebAssembly&lt;&#x2F;a&gt; (Wasm) as a compact, portable, and secure format for programs presents a new option for building polyglot tools:
+parsers written in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;appcypher&#x2F;awesome-wasm-langs&quot;&gt;Wasm-supporting languages&lt;&#x2F;a&gt; that can be leveraged by various tools.&lt;&#x2F;p&gt;
+&lt;p&gt;These could be generated by parser generators or written by hand,
+enable support for every class of language grammar,
+and can be consumed in any environment where Wasm can be run.
+So &lt;a href=&quot;https:&#x2F;&#x2F;esoterra.dev&#x2F;blog&#x2F;embeddable-webassembly-parsers&#x2F;%22https:&#x2F;&#x2F;caniuse.com&#x2F;wasm%22&quot;&gt;any browser&lt;&#x2F;a&gt; and anywhere &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;bytecodealliance&#x2F;wasmtime&quot;&gt;wasmtime&lt;&#x2F;a&gt; can be run
+(hint: that’s almost everywhere) would be able to use them.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;components-and-interfaces&quot;&gt;Components and Interfaces&lt;&#x2F;h2&gt;
+&lt;p&gt;WebAssembly has an evolving &lt;a href=&quot;https:&#x2F;&#x2F;radu-matei.com&#x2F;blog&#x2F;intro-wasm-components&#x2F;&quot;&gt;component model&lt;&#x2F;a&gt;
+that makes it easier for WASM modules to talk to other modules through high-level interfaces.
+This allows us to create an interface definition &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;bytecodealliance&#x2F;wit-bindgen&#x2F;blob&#x2F;980007f19ff7933035491e6c7d9cfdf950d596fd&#x2F;WIT.md&quot;&gt;.wit&lt;&#x2F;a&gt;
+file that specifies what it means to be a parser.&lt;&#x2F;p&gt;
+&lt;p&gt;The simplest version of this might take in a string, and output a JSON representation of the parse tree.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span&gt;parse: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;function&lt;&#x2F;span&gt;&lt;span&gt;(input&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span&gt;string) -&amp;gt; string
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Once we define the output format, even this very simple interface is enough to get us started
+and enables us to write parsers in Wasm languages that work on any platform.&lt;&#x2F;p&gt;
+&lt;p&gt;This is still pretty low level though and doesn&#x27;t offer very much structure (and potentially performance).
+It&#x27;s also a bit silly that you have to then parse your parser output as JSON. We can do better.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;a-higher-level-interface&quot;&gt;A Higher Level Interface&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s make an interface that is higher level and actually encodes the structure of a parse tree&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;tokens&quot;&gt;Tokens&lt;&#x2F;h3&gt;
+&lt;p&gt;We&#x27;ll start by defining a record type to represent &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Lexical_analysis#Token&quot;&gt;tokens&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span&gt;record token {
+&lt;&#x2F;span&gt;&lt;span&gt;    label: string,
+&lt;&#x2F;span&gt;&lt;span&gt;    span: span
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;record span {
+&lt;&#x2F;span&gt;&lt;span&gt;    offset: u32, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#608b4e;&quot;&gt;&#x2F;&#x2F; The byte index where the token starts
+&lt;&#x2F;span&gt;&lt;span&gt;    length: u32, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#608b4e;&quot;&gt;&#x2F;&#x2F; The number of bytes long the token is
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Each token gets a string label that identifies what kind of token it is (e.g. identifier, keyword)
+and a span that identifies what part of the input it represents.
+Span info is crucial to the functioning of formatters, linters, and many other tools.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;parse-tree&quot;&gt;Parse Tree&lt;&#x2F;h3&gt;
+&lt;p&gt;Now that we can represent tokens, we need to represent the parse tree itself.
+Currently, the WIT format does not support recursive type definitions which are the typical way of doing this.
+Instead, we&#x27;ll use indexes to provide a little indirection.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span&gt;record branch {
+&lt;&#x2F;span&gt;&lt;span&gt;    label: string,
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#608b4e;&quot;&gt;&#x2F;&#x2F; The nodes that this branch contains
+&lt;&#x2F;span&gt;&lt;span&gt;    children: list&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt;node-index&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;variant node-index {
+&lt;&#x2F;span&gt;&lt;span&gt;    token(u32),  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#608b4e;&quot;&gt;&#x2F;&#x2F; refers to the Nth token in output
+&lt;&#x2F;span&gt;&lt;span&gt;    branch(u32), &lt;&#x2F;span&gt;&lt;span style=&quot;color:#608b4e;&quot;&gt;&#x2F;&#x2F; refers to the Nth branch in output
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;record output {
+&lt;&#x2F;span&gt;&lt;span&gt;    tokens: list&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt;token&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    tree: list&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span&gt;branch&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;the-parser&quot;&gt;The Parser&lt;&#x2F;h3&gt;
+&lt;p&gt;Now we have all the tools we need to describe the parser interface.
+A parser simply transforms a string into parser output.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span&gt;parse: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;function&lt;&#x2F;span&gt;&lt;span&gt;(input&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span&gt;string) -&amp;gt; output
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Keen readers might notice that there is no explicit mention of error handling so far.
+In this simplified example, errors will simply be encoded as tokens and branches with a special label.
+Future expansions to EWPs could add more explicit error handling.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;implementing-the-interface&quot;&gt;Implementing the Interface&lt;&#x2F;h3&gt;
+&lt;p&gt;The interface we just wrote isn&#x27;t hypothetical, we can implement it right now!&lt;&#x2F;p&gt;
+&lt;p&gt;Using Rust and the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;bytecodealliance&#x2F;wit-bindgen&quot;&gt;wit-bindgen&lt;&#x2F;a&gt; project
+we can create some scaffolding that looks like this.
+The &lt;code&gt;wit_bindgen_rust&lt;&#x2F;code&gt; export line tells bindgen that we want to export the interface we defined,
+which just means that we will provide an implementation for other components to use.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span&gt;wit_bindgen_rust::export&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;!&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d69d85;&quot;&gt;&amp;quot;..&#x2F;parser1.wit&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;struct &lt;&#x2F;span&gt;&lt;span&gt;Parser1 {}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;impl &lt;&#x2F;span&gt;&lt;span&gt;parser1::Parser1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;Parser1 {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span&gt;parse(input: String) -&amp;gt; parser1::Output {
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; tokens = tokenize(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span&gt;input);
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; tree = parse(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span&gt;tokens);
+&lt;&#x2F;span&gt;&lt;span&gt;        parser1::Output { tokens, tree }
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;pub fn &lt;&#x2F;span&gt;&lt;span&gt;tokenize(input: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;amp;str&lt;&#x2F;span&gt;&lt;span&gt;) -&amp;gt; Vec&amp;lt;Token&amp;gt; {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;...
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;pub fn &lt;&#x2F;span&gt;&lt;span&gt;parse(input: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span&gt;[Token]) -&amp;gt; Vec&amp;lt;Branch&amp;gt; {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;...
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;From there we just need to implement the tokenizing and parsing logic for our language of choice.
+I chose to use JSON since it is simple and practical.
+The source code for this is available on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;esoterra&#x2F;EWP&#x2F;blob&#x2F;main&#x2F;ewp-json&#x2F;src&#x2F;lib.rs&quot;&gt;GitHub&lt;&#x2F;a&gt;
+but is too long to cover in this article.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;consuming-the-interface&quot;&gt;Consuming the Interface&lt;&#x2F;h2&gt;
+&lt;p&gt;Now that we have defined a simple Embeddable WASM Parser interface and implemented it for a language,
+it&#x27;s time to use that implementation to do something useful.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;ewp-tool-example&quot;&gt;EWP Tool Example&lt;&#x2F;h3&gt;
+&lt;p&gt;There are a wide variety of things you could do with the ability to parse arbitrary languages,
+but in the spirit of keeping things simple our example is just going to print the parse tree in a nice format.&lt;&#x2F;p&gt;
+&lt;p&gt;The tool will take in the path to a parser&#x27;s WASM file and the file to parse and print out
+the parse tree as an &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;S-expression&quot;&gt;S-expression&lt;&#x2F;a&gt; like so.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot;&gt;&lt;code&gt;&lt;span&gt;$ cargo run -- ..&#x2F;ewp_json.wasm ..&#x2F;test.json
+&lt;&#x2F;span&gt;&lt;span&gt;(Object
+&lt;&#x2F;span&gt;&lt;span&gt;    (LBrace)
+&lt;&#x2F;span&gt;&lt;span&gt;    (Entry
+&lt;&#x2F;span&gt;&lt;span&gt;        (String)
+&lt;&#x2F;span&gt;&lt;span&gt;        (Colon)
+&lt;&#x2F;span&gt;&lt;span&gt;        (Number)
+&lt;&#x2F;span&gt;&lt;span&gt;    )
+&lt;&#x2F;span&gt;&lt;span&gt;    (RBrace)
+&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;using-a-runtime&quot;&gt;Using a Runtime&lt;&#x2F;h3&gt;
+&lt;p&gt;The tool is going to need to execute Embeddable WASM Parsers, which means it needs a runtime.
+We&#x27;ll use &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;bytecodealliance&#x2F;wasmtime&quot;&gt;wasmtime&lt;&#x2F;a&gt; which is an official project of the &lt;a href=&quot;https:&#x2F;&#x2F;bytecodealliance.org&#x2F;&quot;&gt;Bytecode Alliance&lt;&#x2F;a&gt;,
+a non-profit foundation building Open Source implementations of the standard.&lt;&#x2F;p&gt;
+&lt;p&gt;We&#x27;ll create a new crate called &lt;em&gt;tree-ewp&lt;&#x2F;em&gt; with dependencies for running and talking to our WASM runtime.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#808080;&quot;&gt;package&lt;&#x2F;span&gt;&lt;span&gt;]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d69d85;&quot;&gt;&amp;quot;tree-ewp&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;version &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d69d85;&quot;&gt;&amp;quot;0.1.0&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;edition &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d69d85;&quot;&gt;&amp;quot;2021&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#808080;&quot;&gt;dependencies&lt;&#x2F;span&gt;&lt;span&gt;]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;wasmtime &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d69d85;&quot;&gt;&amp;quot;0.33.0&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;wit-bindgen-wasmtime &lt;&#x2F;span&gt;&lt;span&gt;= { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff3333;&quot;&gt;... }
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff3333;&quot;&gt;...
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In our code, we just instantiate the runtime, load and initialize our WASM file, execute the parse function, and then print the output.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#608b4e;&quot;&gt;&#x2F;&#x2F; Set up WASMTIME
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; engine = Engine::default();
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;let mut&lt;&#x2F;span&gt;&lt;span&gt; linker = Linker::new(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span&gt;engine);
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;let mut&lt;&#x2F;span&gt;&lt;span&gt; store = Store::new(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span&gt;engine, interface::Parser1Data {});
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#608b4e;&quot;&gt;&#x2F;&#x2F; Load and initialize our EWP module
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; wat = fs::read(args.ewp_path)
+&lt;&#x2F;span&gt;&lt;span&gt;    .expect(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d69d85;&quot;&gt;&amp;quot;Could not read EWP WASM module file&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; module = Module::new(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span&gt;engine, wat)
+&lt;&#x2F;span&gt;&lt;span&gt;    .expect(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d69d85;&quot;&gt;&amp;quot;Could not initialize module&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; result = interface::Parser1::instantiate(
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;amp;mut&lt;&#x2F;span&gt;&lt;span&gt; store, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span&gt;module,
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;amp;mut&lt;&#x2F;span&gt;&lt;span&gt; linker, get_whole_store
+&lt;&#x2F;span&gt;&lt;span&gt;    )
+&lt;&#x2F;span&gt;&lt;span&gt;    .expect(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d69d85;&quot;&gt;&amp;quot;Failed to instantiate interface&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#608b4e;&quot;&gt;&#x2F;&#x2F; Read input file and parse it
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; input = fs::read_to_string(args.input_path)
+&lt;&#x2F;span&gt;&lt;span&gt;    .expect(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d69d85;&quot;&gt;&amp;quot;Could not read pares input file&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; output = result.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b5cea8;&quot;&gt;1.&lt;&#x2F;span&gt;&lt;span&gt;parse(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;amp;mut&lt;&#x2F;span&gt;&lt;span&gt; store, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span&gt;input)
+&lt;&#x2F;span&gt;&lt;span&gt;    .expect(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d69d85;&quot;&gt;&amp;quot;Failed to run EWP&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;printer::pretty_print(output);
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Printing S-expressions is done with a few recursive functions that keep track of the indentation.
+You can see how that&#x27;s done and the rest of the tree-ewp tool in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;esoterra&#x2F;EWP&#x2F;tree&#x2F;main&#x2F;tree-ewp&quot;&gt;the GitHub repo&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap Up&lt;&#x2F;h2&gt;
+&lt;p&gt;WebAssembly is an incredibly promising technology enabling new levels of security and portability for code.
+Its modularity allows us to share code conforming to specified interfaces as a way to solve specific problems,
+and it can be used to create portable parsers that we can run anywhere.&lt;&#x2F;p&gt;
+</description>
+      </item>
+    </channel>
+</rss>

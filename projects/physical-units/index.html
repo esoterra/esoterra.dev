@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+        
+    
+
+    
+        
+    
+
+    <title>Physical Units | Esoterra</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+
+    <meta name="description" content="A library for working with values that have physical units in a simple sound way" />
+    <meta name="keywords" content="Robin Brown,esoterra,programming,rust,webassembly,wasm">
+    <link rel="author" href="https://hachyderm.io/@esoterra" />
+
+    
+        <link rel="canonical" href="https:&#x2F;&#x2F;esoterra.dev&#x2F;projects&#x2F;physical-units&#x2F;" />
+        <meta property="og:url" content="https:&#x2F;&#x2F;esoterra.dev&#x2F;projects&#x2F;physical-units&#x2F;">
+    
+
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/banner.png">
+    <meta property="og:description" content="A library for working with values that have physical units in a simple sound way">
+    <meta property="og:title" content="Physical Units">
+    <meta property="og:site_name" content="Esoterra">
+    <meta property="og:see_also" content="https://esoterra.dev">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/projects">Projects</a>
+            <a href="/talks">Talks</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article>
+    <a href="https:&#x2F;&#x2F;github.com&#x2F;esoterra&#x2F;physical-units"><h1 class="title">Physical Units</h1></a>
+    <p class="subtitle"><strong>A library for working with values that have physical units in a simple sound way</strong></p>
+    <h2 id="base-units">Base Units</h2>
+<p>Any SI unit can be represented as the powers of the seven SI base units that multiply to construct it.</p>
+<table><thead><tr><th>Name</th><th>Symbol</th><th>Quantity</th></tr></thead><tbody>
+<tr><td>kilogram</td><td>kg</td><td>mass</td></tr>
+<tr><td>meter</td><td>m</td><td>distance</td></tr>
+<tr><td>second</td><td>s</td><td>time</td></tr>
+<tr><td>mole</td><td>mol</td><td>amount</td></tr>
+<tr><td>ampere</td><td>A</td><td>current</td></tr>
+<tr><td>kelvin</td><td>K</td><td>temperature</td></tr>
+<tr><td>candela</td><td>cd</td><td>luminosity</td></tr>
+</tbody></table>
+<p>For example, 1 newton (1 N) is equal to one kilogram meter per second squared (1 kg⋅m/s²),
+which can be represented a <code>(1, 1, -2, 0, 0, 0, 0)</code> where each value corresponds to the exponent
+of an SI base unit. This is how the <code>BaseUnit</code> type represents units.</p>
+<h2 id="derived-units">Derived Units</h2>
+<p>In addition to the base units, there are also SI derived units
+which can be useful for talking about common combinations of base units.</p>
+<table><thead><tr><th>Name</th><th>Symbol</th><th>Quantity</th><th>SI Base Units</th></tr></thead><tbody>
+<tr><td>hertz</td><td>Hz</td><td>frequency</td><td>s⁻¹</td></tr>
+<tr><td>newton</td><td>N</td><td>force, weight</td><td>kg⋅m⋅s⁻²</td></tr>
+<tr><td>pascal</td><td>Pa</td><td>pressure, stress</td><td>kg⋅m⁻¹⋅s⁻²</td></tr>
+<tr><td>joule</td><td>J</td><td>energy, work, heat</td><td>kg⋅m²⋅s⁻²</td></tr>
+<tr><td>watt</td><td>W</td><td>power, radiant flux</td><td>kg⋅m²⋅s⁻³</td></tr>
+<tr><td>coulomb</td><td>C</td><td>electrical charge</td><td>s⋅A</td></tr>
+<tr><td>volt</td><td>V</td><td>voltage, electrical potential difference</td><td>kg⋅m²⋅s⁻³⋅A⁻¹</td></tr>
+<tr><td>farad</td><td>F</td><td>electrical capacitance</td><td>kg⁻¹⋅m⁻2⋅s³⋅A²</td></tr>
+<tr><td>ohm</td><td>Ω</td><td>electrical resistance</td><td>kg⋅m²⋅s⁻³⋅A⁻²</td></tr>
+<tr><td>siemens</td><td>S</td><td>electrical conductance</td><td>kg⁻¹⋅m⁻²⋅s³⋅A²</td></tr>
+<tr><td>weber</td><td>Wb</td><td>magnetic flux</td><td>kg⋅m²⋅s⁻²⋅A⁻¹</td></tr>
+<tr><td>tesla</td><td>T</td><td>magnetic induction</td><td>kg⋅s⁻²⋅A⁻¹</td></tr>
+<tr><td>henry</td><td>H</td><td>electrical inductance</td><td>kg⋅m²⋅s⁻²⋅A⁻²</td></tr>
+<tr><td>lux</td><td>lx</td><td>illuminance</td><td>cd⋅m⁻²</td></tr>
+<tr><td>becquerel</td><td>Bq</td><td>radioactivity</td><td>s⁻¹</td></tr>
+<tr><td>gray</td><td>Gy</td><td>absorbed dose (of ionizing radiation)</td><td>m²⋅s⁻²</td></tr>
+<tr><td>sievert</td><td>Sv</td><td>equivalent dose (of ionizing radiation)</td><td>m²⋅s⁻²</td></tr>
+<tr><td>katal</td><td>kat</td><td>catalytic activity</td><td>s⁻¹⋅mol</td></tr>
+</tbody></table>
+<p>(based on <a href="https://en.wikipedia.org/wiki/SI_derived_unit#Special_names">Wikipedia: SI derived unit - Special names</a>)</p>
+<p>These units can all be represented in <code>BaseUnit</code> as powers of SI base units,
+but the <code>derived</code> module also provides a representation that keeps track
+of specifically which base and derived units were specified.</p>
+<p>Units represented this way are encoded using 7 base exponents
+and 18 <strong>additional</strong> exponents for the derived units!
+This is <strong>NOT</strong> a minimal encoding of the unit information but
+the redundancy allows us to distinguish between <code>"N"</code> and <code>"kg⋅m/s²"</code>.</p>
+<h2 id="arithmetic">Arithmetic</h2>
+<p>Both <code>BaseValue</code> and <code>DerivedValue</code> support basic arithmetic including addition, subtraction, multiplication, and division.</p>
+<ul>
+<li><strong>Addition</strong> and <strong>subtraction</strong> require the values to have the same units and if they are, not produces a <code>UnitMismatch</code> error.</li>
+<li><strong>Multiplication</strong> and <strong>division</strong> don't require the values to have the same units and infers the correct units for the resulting value.</li>
+</ul>
+<h2 id="comparison">Comparison</h2>
+<p>All of the types (<code>BaseUnit</code>, <code>BaseValue</code>, <code>DerivedUnit</code>, <code>DerivedValue</code>) support comparison
+and, in the case of the derived ones, perform the necessary conversions to check that they are equal
+even if the representations differ.</p>
+<h2 id="limitations">Limitations</h2>
+<p>The exponent for each unit is an 8-bit signed integer (<code>i8</code>) which can
+encode values in the range <code>-128..128</code> (inclusive..exclusive).
+This means that fractional unit exponents can't be represented and
+if you attempt to multiply or divide <code>BaseUnit</code>, <code>BaseValue</code>, <code>DerivedUnit</code>, or <code>DerivedValue</code>
+such that any unit exponent leaves this range, you will get a runtime panic.</p>
+<h2 id="simplifying">Simplifying</h2>
+<p>The <code>DerivedUnit</code> type implements a <code>simplify()</code> function that attempts to express
+the unit in terms of the fewest exponents using a naive greedy algorithm
+which applies identities which reduce the sum of absolute exponents.</p>
+<h2 id="formatting">Formatting</h2>
+<p>All of the unit types have a pretty-printed <code>Display</code> implementation.</p>
+<p>The <code>Display</code> implementation operates at the level of abstraction of the unit type it's for.</p>
+<ul>
+<li><code>BaseUnit</code> - <code>"kg⋅m/s²"</code></li>
+<li><code>DerivedUnit</code> - <code>"N"</code> OR <code>"kg⋅m/s²"</code> (depending on how it was constructed)</li>
+</ul>
+<p>They also have a <code>Debug</code> implementation that uses the full names of units and doesn't use <code>/</code> or parenthesis.</p>
+<ul>
+<li><code>BaseUnit</code> - <code>"BaseUnit(kilogram⋅meter⋅second⁻²)"</code></li>
+<li><code>DerivedUnit</code> - <code>"DerivedUnit(newton)"</code> OR <code>"DerivedUnit(kilogram⋅meter⋅second⁻²)"</code></li>
+</ul>
+<h2 id="parsing">Parsing</h2>
+<blockquote>
+<p>TODO: Implement and document parsing for each unit representation</p>
+</blockquote>
+<h2 id="read-eval-print-loop-repl">Read-eval-print-loop (REPL)</h2>
+<blockquote>
+<p>TODO: Implement and document a simple REPL for evaluating expressions with units</p>
+</blockquote>
+<h2 id="inspiration">Inspiration</h2>
+<p>Inspired by the video <a href="https://www.youtube.com/watch?v=bI-FS7aZJpY">Seven Dimensions: Why mass is a vector (and so is everything else) (kind of)</a>, which proposes treating units as a vector space and applying linear algebra concepts to it.</p>
+
+</article>
+
+    </main>
+</body>
+
+</html>

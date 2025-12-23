@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+        
+    
+
+    
+        
+    
+
+    <title>Template Compiler | Esoterra</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+
+    <meta name="description" content="A compiler from templates to minimal Wasm Components" />
+    <meta name="keywords" content="Robin Brown,esoterra,programming,rust,webassembly,wasm">
+    <link rel="author" href="https://hachyderm.io/@esoterra" />
+
+    
+        <link rel="canonical" href="https:&#x2F;&#x2F;esoterra.dev&#x2F;projects&#x2F;template-compiler&#x2F;" />
+        <meta property="og:url" content="https:&#x2F;&#x2F;esoterra.dev&#x2F;projects&#x2F;template-compiler&#x2F;">
+    
+
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/banner.png">
+    <meta property="og:description" content="A compiler from templates to minimal Wasm Components">
+    <meta property="og:title" content="Template Compiler">
+    <meta property="og:site_name" content="Esoterra">
+    <meta property="og:see_also" content="https://esoterra.dev">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/projects">Projects</a>
+            <a href="/talks">Talks</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article>
+    <a href="https:&#x2F;&#x2F;github.com&#x2F;esoterra&#x2F;template-compiler"><h1 class="title">Template Compiler</h1></a>
+    <p class="subtitle"><strong>A compiler from templates to minimal Wasm Components</strong></p>
+    <p>This project compiles template files based on <strong>Nunjucks</strong> to <strong>WebAssembly (Wasm) Components</strong>.
+The template does not have to be valid HTML. It can be any text you want.
+The components the compiler generates export a single function that takes in parameters and returns the template output string.</p>
+<p>It currently supports parameter interpolation (via <code>{{ param }}</code> syntax) and conditional rendering (via <code>{% if param %}...{% endif %}</code> syntax).</p>
+<p>I don't currently have time to dedicate to the project, but I would like to add more features eventually like loops/repeated rendering, dotted/nested parameter names, filters, and async streams.</p>
+<h2 id="basic-example">Basic Example</h2>
+<ol>
+<li>Write a template in the nunjucks-like style template-compiler supports like so.</li>
+</ol>
+<pre data-lang="html" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-html "><code class="language-html" data-lang="html"><span style="color:#808080;">&lt;!</span><span style="color:#569cd6;">DOCTYPE html</span><span style="color:#808080;">&gt;
+</span><span style="color:#808080;">&lt;</span><span style="color:#569cd6;">html</span><span style="color:#808080;">&gt;
+</span><span style="color:#808080;">&lt;</span><span style="color:#569cd6;">head</span><span style="color:#808080;">&gt;
+</span><span>    </span><span style="color:#808080;">&lt;</span><span style="color:#569cd6;">title</span><span style="color:#808080;">&gt;</span><span>{{ title }}</span><span style="color:#808080;">&lt;/</span><span style="color:#569cd6;">title</span><span style="color:#808080;">&gt;
+</span><span style="color:#808080;">&lt;/</span><span style="color:#569cd6;">head</span><span style="color:#808080;">&gt;
+</span><span style="color:#808080;">&lt;</span><span style="color:#569cd6;">body</span><span style="color:#808080;">&gt;
+</span><span>    </span><span style="color:#808080;">&lt;</span><span style="color:#569cd6;">h1</span><span style="color:#808080;">&gt;</span><span>{{ title }}</span><span style="color:#808080;">&lt;/</span><span style="color:#569cd6;">h1</span><span style="color:#808080;">&gt;
+</span><span>    {{ content }}
+</span><span>
+</span><span>    {% if include_footer %}
+</span><span>    Thanks!!
+</span><span>    {% endif %}
+</span><span style="color:#808080;">&lt;/</span><span style="color:#569cd6;">body</span><span style="color:#808080;">&gt;
+</span><span style="color:#808080;">&lt;/</span><span style="color:#569cd6;">html</span><span style="color:#808080;">&gt;
+</span></code></pre>
+<ol start="2">
+<li>The compiler will generate a Wasm Component with an inferred component type like the following.</li>
+</ol>
+<pre data-lang="wit" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-wit "><code class="language-wit" data-lang="wit"><span>package template:website;
+</span><span>
+</span><span>world website {
+</span><span>    record params {
+</span><span>        content: string,
+</span><span>        title: string,
+</span><span>        include-footer: bool,
+</span><span>    }
+</span><span>
+</span><span>    export apply: func(param: params) -&gt; string;
+</span><span>}
+</span></code></pre>
+<ol start="3">
+<li>The component can now be provided to a Wasm Component runtime (like <a href="https://wasmtime.dev/">Wasmtime</a>) and its exported <code>apply</code> function called.</li>
+</ol>
+<p>The full code required to invoke the compiler and run the component in this example is available in the <a href="https://github.com/esoterra/template-compiler/blob/main/tests/website_cond.rs">"website_cond" test</a>.</p>
+<h2 id="compiler-cli">Compiler CLI</h2>
+<p>The CLI is extremely simple and has no subcommands. There are named parameters for input path and output path. The <code>--help</code> flag is available.</p>
+<pre data-lang="sh" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-sh "><code class="language-sh" data-lang="sh"><span>cargo run</span><span style="color:#569cd6;"> --</span><span> -i &lt;input-path&gt; -o &lt;destination-path&gt;
+</span></code></pre>
+
+</article>
+
+    </main>
+</body>
+
+</html>

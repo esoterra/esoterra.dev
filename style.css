@@ -1,0 +1,362 @@
+/* Ubuntu */
+@font-face {
+    font-family: "ubuntu";
+    src: url("fonts/ubuntu/ubuntu-regular.woff") format("woff");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "ubuntu";
+    src: url("fonts/ubuntu/ubuntu-bold.woff") format("woff");
+    font-weight: bold;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "ubuntu";
+    src: url("fonts/ubuntu/ubuntu-bold-italic.woff") format("woff");
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "ubuntu";
+    src: url("fonts/ubuntu/ubuntu-italic.woff") format("woff");
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Ubuntu Mono */
+@font-face {
+    font-family: "ubuntu-mono";
+    src: url("fonts/ubuntu/ubuntumono-regular.woff") format("woff");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "ubuntu-mono";
+    src: url("fonts/ubuntu/ubuntumono-bold.woff") format("woff");
+    font-weight: bold;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "ubuntu-mono";
+    src: url("fonts/ubuntu/ubuntumono-bold-italic.woff") format("woff");
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "ubuntu-mono";
+    src: url("fonts/ubuntu/ubuntumono-italic.woff") format("woff");
+    font-style: italic;
+    font-display: swap;
+}
+
+html {
+    --green-dark: #37381d;
+    --green-lighter: #37381dd0;
+    --brown-bright: #b17354;
+    --brown-darker: #613520;
+
+    --margin-background: #381d2ad0;
+    --content-background: rgb(240,240,240);
+}
+
+/* Baseline */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+    box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+    background-color: var(--green-lighter);
+	line-height: 28px;
+    font-size: 90%;
+}
+ol, ul {
+	list-style: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Layout */
+header {
+    background-color: var(--green-dark);
+    position: sticky;
+    top: 0;
+    z-index: 800;
+
+    margin-bottom: 16px;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+
+    padding-left: 16px;
+}
+
+nav > a, nav > a:visited {
+    font-weight: bold;
+    color: white;
+    padding: 12px;
+}
+
+nav > a:hover {
+    color: var(--green-dark);
+    background-color: white;
+}
+
+main {
+    max-width: 38rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 28px;
+    border-radius: 0.6em;
+    margin-bottom: 128px;
+
+    background-color: var(--content-background);
+}
+
+/* Text Formatting */
+html {
+    /* font-family: Helvetica Neue,Helvetica,Arial,sans-serif; */
+    font-family: "ubuntu";
+    font-size: 1.2em;
+    color: var(--green-dark);
+    text-rendering: optimizeLegibility;
+}
+
+p, ul, aside {
+    font-family: "ubuntu";
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 175%;
+    margin-bottom: 24px;
+}
+
+h2 {
+    font-weight: 700;
+    font-size: 125%;
+    margin-top: 32px;
+    margin-bottom: 12px;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 100%;
+    margin-bottom: 16px;
+}
+
+h4 {
+    font-size: 100%;
+    margin-bottom: 8px;
+    text-decoration-line: underline;
+}
+
+
+a, a:visited {
+    font-family: "ubuntu";
+    color: var(--brown-bright);
+    text-decoration: none;
+}
+
+a:hover {
+    font-family: "ubuntu";
+    color: var(--green-dark);
+    text-decoration: none;
+}
+
+p a, ul a {
+    font-weight: 600;
+}
+
+pre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: black;
+    line-height: 1.5;
+    padding: 1em;
+    margin: 0.5em 0;
+    border-radius: 0.3em;
+}
+
+code {
+    font-family: "ubuntu-mono" !important;
+    width: 100%;
+    overflow: auto;
+}
+
+code:not(pre code) {
+    background-color: #f5f5f5;
+    white-space: pre-wrap;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: .85rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1),0 1px 1px rgba(0,0,0,.1),0 2px 1px -1px rgba(0,0,0,.12);
+}
+
+blockquote {
+    padding-left: 8px;
+    border-left: 4px solid var(--brown-darker);
+    background-color: rgba(109,113,46, 0.15);
+}
+
+strong {
+    font-weight: 700;
+}
+
+em {
+    font-style: italic;
+}
+
+p {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+ul:has(li) {
+    margin-left: 16px;
+    list-style-type: disc;
+}
+
+li {
+    margin-bottom: 12px;
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+figure > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+figcaption {
+    font-size: 90%;
+}
+
+aside {
+    padding-left: 16px;
+    border-left: 4px solid var(--green-dark);
+}
+
+.title:has(+ .subtitle) {
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    color: #6D606F;
+}
+
+.downscale-75 {
+    width: 75%
+}
+
+.downscale-50 {
+    width: 50%
+}
+
+.mono {
+    font-family: "ubuntu-mono" !important
+}
+
+.zola-anchor {
+    margin-left: -1rem;
+    margin-right: 0.25rem;
+    color: #6D606F !important;
+}
+
+.zola-anchor:hover {
+    color: var(--green-dark) !important;
+}
+
+section.talk {
+    width: 100%;
+    margin: 1rem 0;
+    padding: 1rem;
+
+    border: solid;
+    border-radius: 0.6em;
+    border-width: 4px;
+    color: var(--green-dark);
+    border-color: var(--green-dark);
+    background-color: #47351034;
+}
+
+section.talk:hover {
+    color: var(--brown-bright);
+    border-color: var(--brown-darker);
+    background-color: white;
+}
+
+iframe.youtube {
+    margin: 0.5rem 0;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+embed[type="application/pdf"] {
+    margin: 0.5rem 0;
+    height: 50vh;
+    border-bottom: solid;
+    border-bottom-color: #2a2a2e;
+    border-bottom-width: 16px;
+}
+
+.c12-clock {
+    font-family: "ubuntu-mono" !important;
+
+    font-weight: 700;
+    font-size: 400%;
+
+    color: #EEEEEE;
+    background-color: var(--green-dark);
+    line-height: 1.5;
+    padding: 8px;
+    padding-left: 24px;
+    padding-right: 24px;
+    border-radius: 0.3em;
+
+    margin: 24px;
+}
+
+table, th, td {
+    border: solid;
+    border-width: 4px;
+    border-color: var(--green-dark);
+    padding: 8px;
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+        
+    
+
+    
+        
+    
+
+    <title>Befunge Tools (WIP) | Esoterra</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+
+    <meta name="description" content="An interactive debugger for Befunge" />
+    <meta name="keywords" content="Robin Brown,esoterra,programming,rust,webassembly,wasm">
+    <link rel="author" href="https://hachyderm.io/@esoterra" />
+
+    
+        <link rel="canonical" href="https:&#x2F;&#x2F;esoterra.dev&#x2F;projects&#x2F;befunge&#x2F;" />
+        <meta property="og:url" content="https:&#x2F;&#x2F;esoterra.dev&#x2F;projects&#x2F;befunge&#x2F;">
+    
+
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/banner.png">
+    <meta property="og:description" content="An interactive debugger for Befunge">
+    <meta property="og:title" content="Befunge Tools (WIP)">
+    <meta property="og:site_name" content="Esoterra">
+    <meta property="og:see_also" content="https://esoterra.dev">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/projects">Projects</a>
+            <a href="/talks">Talks</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article>
+    <a href="https:&#x2F;&#x2F;github.com&#x2F;esoterra&#x2F;befunge-exec"><h1 class="title">Befunge Tools (WIP)</h1></a>
+    <p class="subtitle"><strong>An interactive debugger for Befunge</strong></p>
+    <h2 id="befunge">Befunge</h2>
+<p>Befunge 93 is an esoteric programming language where programs are 2 dimensional spaces of bytes.
+They are stored ascii text files or equivalently utf-8 files which contain no larger than 1-byte values.
+To execute the file a cursor moves through the space interpreting each byte as a command
+that affects the position &amp; direction of the cursor, the stack, and the space itself.</p>
+<p>To learn more about Befunge 93, check out the <a href="https://esolangs.org/wiki/Befunge">Befunge page on esolangs.org</a>.</p>
+<p>The <code>befunge-exec</code> tooling faithfully supports the Befunge 93 spec, except the restriction that programs
+must be 80x25 in size is relaxed. In the future, this may be updated to a new dialect
+that supports Unicode Scalar Values instead of ASCII bytes, 32-bit values, and other features.</p>
+<h2 id="modes">Modes</h2>
+<p><code>befunge-exec</code> has three modes: run, debug, and tui</p>
+<ul>
+<li>Run:</li>
+<li>Debug: A simple command-line interpreter that provides basic operations.</li>
+<li>TUI: A work-in-progress Terminal User Interface (TUI) for visualizing and debugging befunge programs.</li>
+</ul>
+<h3 id="run">Run</h3>
+<p>Executes the program, reads input from standard input, writes output to standard output, logs interpreter errors to standard error, and exits with status code 0 unless the interpreter encounters an error.</p>
+<h3 id="debug">Debug</h3>
+<p>Starts the debugger and provides a prompt for commands that allows the user to set breakpoints, step, run, etc. Input is provided by running the <code>i</code> command. Output of running/stepping programs is printed to standard output.</p>
+<h3 id="tui">TUI</h3>
+<blockquote>
+<p>Note: The TUI is a WIP and does not yet support all of its intended features yet.</p>
+</blockquote>
+<ul>
+<li>The program state is displayed on the left-hand side and colored in a semantically-aware way.</li>
+<li>The current contents of the stack are visualized on the right-hand side.</li>
+<li>The bottom area contains tabs for console input/output, entering commands to affect the debugger execution (default tab), and a timeline tab that will eventually contain a log of commands and time-travel debugger feature.</li>
+</ul>
+<p><img src="/projects/befunge/tui_example.png" alt="A terminal window with the title &quot;befunge-exec: lessmore.b93&quot; that is displaying the Terminal User Interface (TUI) of a debugger for the Befunge esoteric programming language. It is made up of Box Drawing Characters and styled with ANSI color codes. It has a main program area displaying a program for a simple guessing game that picks a random number that you try to guess,, a sidebar with an empty table titled Stack, and a set of tabs at the bottom called Console, Commands, and Timeline. The Commands tab is currently selected and shows an empty user input prompt and help output instructing the user on how to operate the debugger." /></p>
+<h2 id="analysis-features">Analysis Features</h2>
+<p>I intend for <code>befunge-exec</code> to embed powerful Befunge static and dynamic analysis features that enhance the user's ability to understand a given Befunge program and ensure that it does what it should or determine why it doesn't.</p>
+<h3 id="naive-path-analysis-implemented">Naive Path Analysis (Implemented)</h3>
+<p>This static analysis pass performs a breadth-first search, using a queue, of the cells reachable by the program assuming it does not modify itself in a way that changes cells that are visited/executed. This is what makes it possible to highlight characters that are executed as instructions differently from characters visited in quote mode and from those that aren't visited at all, and draw lines along the paths the cursor takes through empty space.</p>
+<h3 id="symbolic-evaluation-not-implemented">Symbolic Evaluation (Not Implemented)</h3>
+<p>This static analysis pass would symbolically-execute the program</p>
+<ul>
+<li>Tracking the height of the stack and what is known about each cell, like if the value is known or known to be within a range.</li>
+<li>Literally executing deterministic instructions whose operands are known or tracking what is known about the output on the stack</li>
+<li>Forking when a <code>?</code> a <code>|</code>/<code>_</code> with input that can't be statically known to be zero or non-zero is encountered</li>
+<li>...</li>
+</ul>
+<h3 id="time-travel-debugging-not-implemented">Time-travel Debugging (Not Implemented)</h3>
+<p>By keeping a log of each instruction that was executed and enough information to replay the execution forwards and also rewind it backwards, we would be able to step forwards/backwards and do things like step backwards from a breakpoint to see how it was reached.</p>
+<h3 id="assertions-not-implemented">Assertions (Not Implemented)</h3>
+<p>This is more speculative, but the idea would be to define a syntax for specifying invariants that are statically or dynamically asserted to be true.</p>
+<p>In dynamic checking, we would just ensure that the invariant isn't broken during execution.</p>
+<p>For static checking, we would take advantage of symbolic evaluation to ensure that that it isn't possible for the invariant to be broken.</p>
+
+</article>
+
+    </main>
+</body>
+
+</html>

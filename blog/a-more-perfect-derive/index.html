@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+        
+    
+
+    
+        
+    
+
+    <title>A More Perfect Derive | Esoterra</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+
+    <meta name="description" content="A refresher on derive &amp; perfect derive with some design options enumerated" />
+    <meta name="keywords" content="Robin Brown,esoterra,programming,rust,webassembly,wasm">
+    <link rel="author" href="https://hachyderm.io/@esoterra" />
+
+    
+        <link rel="canonical" href="https:&#x2F;&#x2F;esoterra.dev&#x2F;blog&#x2F;a-more-perfect-derive&#x2F;" />
+        <meta property="og:url" content="https:&#x2F;&#x2F;esoterra.dev&#x2F;blog&#x2F;a-more-perfect-derive&#x2F;">
+    
+
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/banner.png">
+    <meta property="og:description" content="A refresher on derive &amp; perfect derive with some design options enumerated">
+    <meta property="og:title" content="A More Perfect Derive">
+    <meta property="og:site_name" content="Esoterra">
+    <meta property="og:see_also" content="https://esoterra.dev">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/projects">Projects</a>
+            <a href="/talks">Talks</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article>
+    <h1 class="title">A More Perfect Derive</h1>
+    
+    <p class="subtitle"><strong>A refresher on derive &amp; perfect derive with some design options enumerated</strong></p>
+    
+    <h2 id="what-is-derive">What is Derive?</h2>
+<p>In some languages, users need to write (or use tools to generate) boilerplate implementations for common functionality (like debug printing, comparison, hashing) over and over again  on each type they define.</p>
+<pre data-lang="py" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-py "><code class="language-py" data-lang="py"><span style="color:#569cd6;">class </span><span>Point():
+</span><span>    </span><span style="color:#569cd6;">def </span><span>__init__(self, x: float, y: float):
+</span><span>        self.x = x
+</span><span>        self.y = y
+</span><span>
+</span><span>    </span><span style="color:#569cd6;">def </span><span>__repr__(self) -&gt; str:
+</span><span>        </span><span style="color:#569cd6;">return f</span><span style="color:#d69d85;">&quot;Point(x=</span><span>{self.x}</span><span style="color:#d69d85;">, y=</span><span>{self.y}</span><span style="color:#d69d85;">)&quot;
+</span></code></pre>
+<p>Rust has an awesome feature called "derive" and using it we can write <code>#[derive(Debug, PartialEq, Eq, Hash)]</code> and the implementations will be generated at compile time. This improves productivity and removes an easy place for little mistakes to be made.</p>
+<pre data-lang="rust" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[derive(Debug)]
+</span><span style="color:#569cd6;">struct </span><span>Point {
+</span><span>    x: </span><span style="color:#569cd6;">f32</span><span>,
+</span><span>    y: </span><span style="color:#569cd6;">f32</span><span>,
+</span><span>}
+</span></code></pre>
+<h2 id="how-should-derive-handle-generics">How Should Derive Handle Generics?</h2>
+<p>When we derive a trait for a type that has generic parameters, it may not be possible to generate an implementation without putting bounds on those parameters.</p>
+<p>For example, in the following <code>Pair</code> type, it is only possible to <code>Debug</code> print <code>Pair&lt;X&gt;</code> if <code>X</code> can be <code>Debug</code> printed.</p>
+<pre data-lang="rust" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#569cd6;">struct </span><span>Pair&lt;X&gt; {
+</span><span>    left: X,
+</span><span>    right: X,
+</span><span>}
+</span></code></pre>
+<p>This can be expressed by the following impl bound.</p>
+<pre data-lang="rust" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#569cd6;">impl</span><span>&lt;X&gt; std::fmt::Debug </span><span style="color:#569cd6;">for </span><span>Pair&lt;X&gt;
+</span><span style="color:#569cd6;">where
+</span><span>    X: std::fmt::Debug
+</span><span>{
+</span><span>    </span><span style="color:#569cd6;">...
+</span><span>}
+</span></code></pre>
+<h2 id="what-about-more-complex-generics">What About More Complex Generics?</h2>
+<p>Some types use a generic type parameter without actually structurally including a value of that type directly. For example, the following type <code>List&lt;T&gt;</code> doesn't include a a <code>T</code> directly.</p>
+<pre data-lang="rust" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#569cd6;">struct </span><span>List&lt;T&gt; {
+</span><span>    data: Rc&lt;T&gt;,
+</span><span>    next: Option&lt;Rc&lt;List&lt;T&gt;&gt;&gt;,
+</span><span>}
+</span></code></pre>
+<p>For some traits like <code>Debug</code>, a wrapper like <code>Rc</code> around a <code>T</code> will only implement a trait if <code>T</code> does. For other traits like <code>Clone</code>, this isn't necessarily true because an <code>Rc&lt;T&gt;</code> is <code>Clone</code> even if <code>T</code> isn't.</p>
+<p>That means that we don't actually need to bound our <code>Clone</code> implementation for <code>List&lt;T&gt;</code> with <code>T: Clone</code>. It could look like the following:</p>
+<pre data-lang="rust" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#569cd6;">impl</span><span>&lt;T&gt; Clone </span><span style="color:#569cd6;">for </span><span>List&lt;T&gt; {
+</span><span>    </span><span style="color:#569cd6;">fn </span><span>clone(</span><span style="color:#569cd6;">&amp;</span><span>self) {
+</span><span>        List {
+</span><span>            value: self.value.clone(),
+</span><span>            next: self.next.clone(),
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>However, with the current derive implementation it still actually has a bound like in the <code>Pair</code>-<code>Debug</code> example and looks like the following.</p>
+<pre data-lang="rust" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#569cd6;">impl</span><span>&lt;T&gt; Clone </span><span style="color:#569cd6;">for </span><span>List&lt;T&gt;
+</span><span style="color:#569cd6;">where
+</span><span>    T: Clone
+</span><span>{
+</span><span>    </span><span style="color:#569cd6;">fn </span><span>clone(</span><span style="color:#569cd6;">&amp;</span><span>self) { </span><span style="color:#608b4e;">/* as before */ </span><span>}
+</span><span>}
+</span></code></pre>
+<p>That's because the Rust derive mechanism makes a conservative assumption: we shouldn't leak information about the fields of a type into the bounds of the derived implementation. If the internals of <code>List&lt;T&gt;</code> change, it may not be possible to derive <code>Clone</code> without bounds in the future and that could accidentally introduce a breaking change.</p>
+<h2 id="what-is-perfect-derive">What is Perfect Derive?</h2>
+<p>The name "Perfect Derive" refers to a derive algorithm which generates implementations without any unnecessary bounds. It has been discussed by the Rust lang team (<a href="https://github.com/rust-lang/lang-team/issues/152">GitHub issue</a>, <a href="https://hackmd.io/M_Wuev3pSwG_p4RfLGgDYw">Notes</a>) and by the blog <a href="https://smallcultfollowing.com/babysteps//blog/2022/04/12/implied-bounds-and-perfect-derive/">smallcultfollowing.com</a>. The examples in the previous section are just a reiteration of what's covered by these sources.</p>
+<h2 id="why-not-just-turn-on-perfect-derive">Why not just turn on Perfect Derive?</h2>
+<p>If in future editions of Rust the derive macro becomes "perfect", then users switching to the new edition may have the bounds on their derived trait implementations change in subtle ways which cause breakages.</p>
+<p>Some of these users won't even be aware of these subtleties or the change and will likely be very confused. Others may be aware of the update, but not want to change the behavior of their crate or use the new perfect derive anyway because it makes it easier to cause breaking changes.</p>
+<p>If you want to learn more about the challenges to "just doing it", I highly recommend the <a href="https://smallcultfollowing.com/babysteps//blog/2022/04/12/implied-bounds-and-perfect-derive/">smallcultfollowing.com</a> post.</p>
+<h2 id="design-solutions">Design Solutions</h2>
+<p>I think perfect derive should be opt-in in a clear way, so that we don't confuse users and they make an intentional choice between leaking implementation details in their API for more precise bounds or using the more conservative current approach.</p>
+<h3 id="separate-macro">Separate Macro</h3>
+<p>One option is for users to choose between two attribute macros: one that performs perfect derive and one that performs classic derive. This is already possible today using the <a href="https://crates.io/crates/perfect-derive"><code>perfect-derive</code> crate</a>.</p>
+<pre data-lang="rust" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[perfect_derive(Clone)]
+</span><span style="color:#569cd6;">struct </span><span>List&lt;T&gt; { </span><span style="color:#608b4e;">/* as before */ </span><span>}
+</span></code></pre>
+<p>However, I don't think it's obvious to users what a name like this means, when they should use it, and why derive doesn't always work this way. So I'm not sure if this is the right option.</p>
+<h3 id="type-attributes">Type Attributes</h3>
+<p>Another approach would be to let the user indicate when defining a type what types they want their derived implementations to be bound on. If this attribute is not provided, the generic parameters would be used, which is the same as the current behavior.</p>
+<pre data-lang="rust" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[derive(Clone)]
+</span><span style="color:#569cd6;">struct </span><span>List&lt;T&gt; { ... }
+</span><span>
+</span><span style="color:#608b4e;">// or equivalently
+</span><span>
+</span><span>#[derive(Clone)]
+</span><span>#[bound_derive(T)]
+</span><span style="color:#569cd6;">struct </span><span>List&lt;T&gt; { ... }
+</span></code></pre>
+<p>By adding this attribute, users can get whatever bounds they want including what perfect derive would have chosen.</p>
+<pre data-lang="rust" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[derive(Clone)]
+</span><span>#[bound_derive(Rc&lt;T&gt;)]
+</span><span style="color:#569cd6;">struct </span><span>List&lt;T&gt; { ... }
+</span></code></pre>
+<p>This is very explicit and encourages users to think explicitly about what bounds they want on their trait implementations.</p>
+<h3 id="field-attributes">Field Attributes</h3>
+<p>Another idea I had is to put an attribute on the fields of the type which indicates that the bounds may be narrowed using information about that field's type.</p>
+<pre data-lang="rust" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[derive(Clone)]
+</span><span style="color:#569cd6;">struct </span><span>List&lt;T&gt; {
+</span><span>    #[bound_derive]
+</span><span>    data: Rc&lt;T&gt;,
+</span><span>    #[bound_derive]
+</span><span>    next: Option&lt;Rc&lt;List&lt;T&gt;&gt;&gt;,
+</span><span>}
+</span></code></pre>
+<p>In this model, both adding and removing the <code>bound_derive</code> attribute and changing the type of a field labeled <code>bound_derive</code> are potentially breaking changes, but changing the type of any other field is not. This seems like a reasonable behavior and parallels the semantics of <code>pub</code>.</p>
+<p>If multiple fields use the same type parameter <code>T</code> but only some are marked <code>bound_derive</code>, then either pessimistic bounds need to be emitted which still bound on <code>T</code> or it should be rejected as ambiguous.</p>
+<pre data-lang="rust" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#569cd6;">struct </span><span>List&lt;T&gt; {
+</span><span>    data: Rc&lt;T&gt;,
+</span><span>    #[bound_derive]
+</span><span>    next: Option&lt;Rc&lt;List&lt;T&gt;&gt;&gt;,
+</span><span>}
+</span></code></pre>
+<h2 id="wrap-up">Wrap Up</h2>
+<p>Out of these options, I think field attributes are probably the most elegant. Giving users the tools to communicate when they want a field's type to become a public part of the API of their derived type by explicitly saying "hey you can use this" and in a way that mirrors <code>pub</code> feels like a great solution.</p>
+<p>I don't currently have the time to implement this proposal or write an RFC, but hopefully this will bring some attention to perfect derive and ways to solve it.</p>
+<p>Cheers,</p>
+<p><strong>-Robin</strong></p>
+
+</article>
+
+    </main>
+</body>
+
+</html>

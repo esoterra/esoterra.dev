@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+        
+    
+
+    
+        
+    
+
+    <title>The Claw Programming Language | Esoterra</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+
+    <meta name="description" content="The compiler for the Claw compile-to-Wasm language" />
+    <meta name="keywords" content="Robin Brown,esoterra,programming,rust,webassembly,wasm">
+    <link rel="author" href="https://hachyderm.io/@esoterra" />
+
+    
+        <link rel="canonical" href="https:&#x2F;&#x2F;esoterra.dev&#x2F;projects&#x2F;claw&#x2F;" />
+        <meta property="og:url" content="https:&#x2F;&#x2F;esoterra.dev&#x2F;projects&#x2F;claw&#x2F;">
+    
+
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/banner.png">
+    <meta property="og:description" content="The compiler for the Claw compile-to-Wasm language">
+    <meta property="og:title" content="The Claw Programming Language">
+    <meta property="og:site_name" content="Esoterra">
+    <meta property="og:see_also" content="https://esoterra.dev">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/projects">Projects</a>
+            <a href="/talks">Talks</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article>
+    <a href="https:&#x2F;&#x2F;github.com&#x2F;esoterra&#x2F;claw-lang"><h1 class="title">The Claw Programming Language</h1></a>
+    <p class="subtitle"><strong>The compiler for the Claw compile-to-Wasm language</strong></p>
+    <p>Claw is a programming language that compiles to Wasm Components.
+Values in Claw have the exact same types as Component model values and the imports/exports of a Claw source file represent a Component "World".</p>
+<p>This means that there's no bindings generators or indirection required.
+You can receive component values as arguments, operate on them, create them, and return them.</p>
+<pre data-lang="js" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#569cd6;">let </span><span>mut counter</span><span style="color:#569cd6;">: </span><span style="color:#4ec9b0;">s64 </span><span>= </span><span style="color:#b5cea8;">0</span><span>;
+</span><span>
+</span><span style="color:#569cd6;">export </span><span>func increment() -&gt; s64 {
+</span><span>    counter = counter + 1;
+</span><span>    return counter;
+</span><span>}
+</span><span>
+</span><span style="color:#569cd6;">export </span><span>func decrement() -&gt; s64 {
+</span><span>    counter = counter - 1;
+</span><span>    return counter;
+</span><span>}
+</span></code></pre>
+<p>(support for the full range of component model values is still a WIP)</p>
+<h2 id="use-cases-goals">Use Cases &amp; Goals</h2>
+<h3 id="component-testing">Component Testing</h3>
+<p>Claw's ability to define component imports and simple logic easily will be well suited for writing Component tests.</p>
+<pre data-lang="js" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#9b9b9b;">import </span><span>add: func(lhs: s32, rhs: s32) -&gt; s32;
+</span><span>
+</span><span>export func test() -&gt; result&lt;(), string&gt; {
+</span><span>    if add(1, 1) == 2 {
+</span><span>        return ok(());
+</span><span>    } else {
+</span><span>        return err(&quot;test failed&quot;);
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>By adding a <code>check!(...)</code> builtin that returns <code>ok(())</code> when the condition is true and <code>err("&lt;nice message&gt;")</code> when its false
+and a Rust-style <code>?</code> early return operator, we can make writing these tests a lot easier and make the output much better.</p>
+<pre data-lang="js" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#9b9b9b;">import </span><span>add: func(lhs: s32, rhs: s32) -&gt; s32;
+</span><span>
+</span><span>export tests: interface {
+</span><span>    func test() -&gt; result&lt;(), string&gt; {
+</span><span>        check!(add(1, 1) == 2)?;
+</span><span>        ...
+</span><span>        return ok(());
+</span><span>    }
+</span><span>
+</span><span>    ...
+</span><span>}
+</span></code></pre>
+<h3 id="adapters-polyfills">Adapters &amp; Polyfills</h3>
+<p>Sometimes users will have components written for one world but want to run them in another.</p>
+<p>Claw could make it easy to write simple adapters or polyfills so that users can run their existing code more places.</p>
+<h3 id="virtualizations-mocks">Virtualizations &amp; Mocks</h3>
+<p>With components, we can achieve an incredible local dev experience where resources like message buses and key value stores
+can be implemented as simple components and used to run applications for testing and development.</p>
+<p>Claw can be well suited to writing simple in-memory virtualizations that make testing and development easy.</p>
+<h3 id="extensions">Extensions</h3>
+<p>Some applications (e.g. <a href="https://docs.singlestore.com/cloud/reference/code-engine-powered-by-wasm/create-wasm-udfs/">database</a>)
+can already be extended using Wasm and as this becomes more common users may want to write small pieces of logic that act as filters or policy,
+define how to process events, or implement missing math or domain functions.</p>
+<p>Claw can make writing these extensions easy while still generating really small Components that can stored, transmitted, and instantiated quickly.</p>
+<h3 id="simple-services">Simple Services</h3>
+<p>TODO</p>
+<h2 id="relationship-with-other-projects">Relationship with Other Projects</h2>
+<p>There are several projects for representing different aspects of the Component Model</p>
+<ul>
+<li><a href="https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md">WIT</a> - The official IDL for the Component Model</li>
+<li><a href="https://github.com/peterhuene/wac/">WAC</a> - An extension of WIT that adds the ability to define how to wire components together</li>
+<li><a href="https://github.com/lann/wave">WAVE</a> - A format for encoding Component-Model values in an idiomatic json-like way</li>
+</ul>
+<p>Claw will use WIT syntax for defining types, WAC syntax for defining composition, and WAVE syntax for literal expressions
+combining them all together so that it's intuitive to use these different tools.</p>
+<figure style="display: flex; flex-direction:column; align-items: center">
+<img src="https://github.com/esoterra/claw-lang/assets/3458116/de0673f1-7b92-48c6-b1c3-e52479797778" width=800/>
+    <figcaption>How component model projects relate to each other</figcaption>
+</figure>
+
+</article>
+
+    </main>
+</body>
+
+</html>
